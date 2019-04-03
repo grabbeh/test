@@ -32,7 +32,6 @@ export function handler (event, context, callback) {
         if (err) {
           console.log('A file failed to process')
         } else {
-          console.log(data)
           callback(null, {
             statusCode: 200,
             body: JSON.stringify(data)

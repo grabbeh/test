@@ -1,7 +1,6 @@
 [Settings]
 # Added automatically by the Netlify CLI. It has no effect during normal 
 # Git-backed deploys.
-ID = "Your_Site_ID"
 
 # Settings in the [build] context are global and are applied to all contexts 
 # unless otherwise overridden by more specific contexts.  

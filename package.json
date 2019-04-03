@@ -39,7 +39,7 @@
   "scripts": {
     "develop": "gatsby develop",
     "start": "run-p start:**",
-    "start:app": "npm run develop",
+    "start:app": "gatsby serve -p 8000",
     "start:lambda": "netlify-lambda serve src/lambda",
     "build": "run-p build:**",
     "build:app": "gatsby build",
