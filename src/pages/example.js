@@ -27,7 +27,10 @@ const Example = () => {
   const postURL = e => {
     fetch('/.netlify/functions/submission-created', {
       method: 'POST',
-      body: JSON.stringify({ url })
+      body: JSON.stringify({ url }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
       .then(response => {
         console.log(response)
