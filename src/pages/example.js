@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 import Text from '../components/Text'
 import Input from '../components/Input'
 import Button from '../components/Button'
+import axios from 'axios'
 import Flex from '../components/Flex'
 
 const Example = () => {
@@ -25,21 +26,15 @@ const Example = () => {
   }
 
   const postURL = e => {
-    fetch('/.netlify/functions/submission-created', {
-      method: 'POST',
-      body: JSON.stringify({ url }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(response => {
+    axios
+      .post('/.netlify/functions/submission-created', {
+        url
+      })
+      .then(function (response) {
         console.log(response)
-        response.json()
+        setLicenseData(response.data)
       })
-      .then(response => {
-        setLicenseData(response)
-      })
-      .catch(error => {
+      .catch(function (error) {
         console.log(error)
       })
     e.preventDefault()

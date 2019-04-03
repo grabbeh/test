@@ -3,12 +3,6 @@ const _ = require('lodash')
 var async = require('async')
 
 export function handler (event, context, callback) {
-  if (event.httpMethod !== 'POST') {
-    return callback(null, {
-      statusCode: 410,
-      body: 'Unsupported Request Method'
-    })
-  }
   var url = JSON.parse(event.body).url
   request({ url, json: true }, function (error, response, body) {
     let deps = _.keys(body.dependencies)
@@ -22,7 +16,6 @@ export function handler (event, context, callback) {
       return `https://registry.npmjs.org/${dep}/${version}`
     })
     let data = []
-
     async.each(
       urls,
       function (url, cb) {
