@@ -27,7 +27,7 @@ const Example = () => {
 
   const postURL = e => {
     axios
-      .post('/.netlify/functions/test', {
+      .post('/.netlify/functions/submission-created', {
         url
       })
       .then(function (response) {

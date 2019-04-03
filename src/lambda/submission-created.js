@@ -1,9 +1,9 @@
-// For more info, check https://www.netlify.com/docs/functions/#javascript-lambda-functions
 const request = require('request')
 const _ = require('lodash')
 var async = require('async')
 
 export function handler (event, context, callback) {
+  console.log('Fn triggered')
   console.log(event)
   var url = JSON.parse(event.body).url
   request({ url, json: true }, function (error, response, body) {
