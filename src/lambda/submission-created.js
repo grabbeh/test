@@ -4,6 +4,7 @@ const _ = require('lodash')
 var async = require('async')
 
 export function handler (event, context, callback) {
+  console.log(event)
   var url = JSON.parse(event.body).url
   request({ url, json: true }, function (error, response, body) {
     let deps = _.keys(body.dependencies)
@@ -22,6 +23,7 @@ export function handler (event, context, callback) {
       urls,
       function (url, cb) {
         request({ url, json: true }, function (error, response, body) {
+          if (error) console.log(error)
           data.push(body)
           cb()
         })
@@ -30,6 +32,7 @@ export function handler (event, context, callback) {
         if (err) {
           console.log('A file failed to process')
         } else {
+          console.log(data)
           callback(null, {
             statusCode: 200,
             body: JSON.stringify(data)
