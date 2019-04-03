@@ -13,6 +13,7 @@ const _ = require('lodash');
 var async = require('async');
 
 function handler(event, context, callback) {
+  console.log(event);
   var url = JSON.parse(event.body).url;
   request({
     url,
@@ -37,6 +38,7 @@ function handler(event, context, callback) {
         url,
         json: true
       }, function (error, response, body) {
+        if (error) console.log(error);
         data.push(body);
         cb();
       });
@@ -44,6 +46,7 @@ function handler(event, context, callback) {
       if (err) {
         console.log('A file failed to process');
       } else {
+        console.log(data);
         callback(null, {
           statusCode: 200,
           body: JSON.stringify(data)
