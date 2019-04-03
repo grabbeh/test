@@ -29,11 +29,14 @@ const Example = () => {
       method: 'POST',
       body: JSON.stringify({ url })
     })
-      .then(response => response.json())
-      .then(function (response) {
+      .then(response => {
+        console.log(response)
+        response.json()
+      })
+      .then(response => {
         setLicenseData(response)
       })
-      .catch(function (error) {
+      .catch(error => {
         console.log(error)
       })
     e.preventDefault()
