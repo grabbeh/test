@@ -3,8 +3,12 @@ const _ = require('lodash')
 var async = require('async')
 
 export function handler (event, context, callback) {
-  console.log('Fn triggered')
-  console.log(event)
+  if (event.httpMethod !== 'POST') {
+    return callback(null, {
+      statusCode: 410,
+      body: 'Unsupported Request Method'
+    })
+  }
   var url = JSON.parse(event.body).url
   request({ url, json: true }, function (error, response, body) {
     let deps = _.keys(body.dependencies)
