@@ -1,6 +1,6 @@
 const request = require('request')
 const _ = require('lodash')
-var async = require('async')
+const async = require('async')
 
 export function handler (event, context, callback) {
   var url = JSON.parse(event.body).url
