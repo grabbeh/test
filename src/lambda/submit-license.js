@@ -3,6 +3,12 @@ import _ from 'lodash'
 import async from 'async'
 
 export function handler (event, context, callback) {
+  if (event.httpMethod !== 'POST') {
+    return callback(null, {
+      statusCode: 410,
+      body: 'Unsupported Request Method'
+    })
+  }
   var url = JSON.parse(event.body).url
   request({ url, json: true }, (error, response, body) => {
     var deps = _.keys(body.dependencies)

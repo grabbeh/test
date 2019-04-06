@@ -1,5 +1,3 @@
-const fetch = require('node-fetch')
-
 export function handler (event, context, callback) {
   callback(null, {
     statusCode: 200,
