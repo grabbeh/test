@@ -8,7 +8,7 @@ const Layout = props => {
       <Helmet>
         <meta charSet='utf-8' />
         <meta name='viewport' content='width=device-width' />
-        <title>mbg.codes</title>
+        <title>License checker</title>
       </Helmet>
       <div>{props.children}</div>
     </div>
