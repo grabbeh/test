@@ -1,5 +1,7 @@
 // For more info, check https://www.netlify.com/docs/functions/#javascript-lambda-functions
 export function handler (event, context, callback) {
+  console.log(event)
+  console.log('Fn called')
   callback(null, {
     // return null to show no errors
     statusCode: 200, // http status code
