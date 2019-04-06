@@ -2,23 +2,23 @@ var request = require('request')
 var _ = require('lodash')
 var async = require('async')
 
-export function handler (event, context, callback) {
+export async function handler (event, context) {
   if (event.httpMethod !== 'POST') {
-    return callback(null, {
+    return {
       statusCode: 410,
       body: 'Unsupported Request Method'
-    })
+    }
   }
   var url = JSON.parse(event.body).url
   request({ url, json: true }, (error, response, body) => {
     if (error) console.log(error)
-    getFullDependencyData(body.dependencies, callback)
+    getFullDependencyData(body.dependencies)
     // extract out so function accepts either package.json file from github or details of data from npm
   })
 }
 
 // dependencies are an object structure of { request: 1.0.0, express: 2.0.0 } etc
-function getFullDependencyData (dependencies, callback) {
+function getFullDependencyData (dependencies) {
   var deps = _.keys(dependencies)
   var urls = deps.map(dep => {
     var version = dependencies[dep]
@@ -48,10 +48,10 @@ function getFullDependencyData (dependencies, callback) {
       if (err) {
         console.log('A url failed to process')
       } else {
-        callback(null, {
+        return {
           statusCode: 200,
           body: JSON.stringify(data)
-        })
+        }
       }
     }
   )
