@@ -1,13 +1,13 @@
-const request = require('request')
-const _ = require('lodash')
-const async = require('async')
+import request from 'request'
+import _ from 'lodash'
+import async from 'async'
 
 export function handler (event, context, callback) {
   var url = JSON.parse(event.body).url
   request({ url, json: true }, function (error, response, body) {
-    let deps = _.keys(body.dependencies)
-    let urls = deps.map(dep => {
-      let version = body.dependencies[dep]
+    var deps = _.keys(body.dependencies)
+    var urls = deps.map(dep => {
+      var version = body.dependencies[dep]
       if (typeof version === 'string') {
         if (version.includes('~') || version.includes('^')) {
           version = version.substr(1)
@@ -15,7 +15,7 @@ export function handler (event, context, callback) {
       }
       return `https://registry.npmjs.org/${dep}/${version}`
     })
-    let data = []
+    var data = []
     async.each(
       urls,
       function (url, cb) {
