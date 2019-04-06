@@ -1,6 +1,6 @@
-import request from 'request'
-import _ from 'lodash'
-import async from 'async'
+var request = require('request')
+var _ = require('lodash')
+var async = require('async')
 
 export function handler (event, context, callback) {
   if (event.httpMethod !== 'POST') {
