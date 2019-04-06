@@ -4,7 +4,7 @@ import async from 'async'
 
 export function handler (event, context, callback) {
   var url = JSON.parse(event.body).url
-  request({ url, json: true }, function (error, response, body) {
+  request({ url, json: true }, (error, response, body) => {
     var deps = _.keys(body.dependencies)
     var urls = deps.map(dep => {
       var version = body.dependencies[dep]
@@ -18,14 +18,14 @@ export function handler (event, context, callback) {
     var data = []
     async.each(
       urls,
-      function (url, cb) {
-        request({ url, json: true }, function (error, response, body) {
+      (url, cb) => {
+        request({ url, json: true }, (error, response, body) => {
           if (error) console.log(error)
           data.push(body)
           cb()
         })
       },
-      function (err) {
+      err => {
         if (err) {
           console.log('A file failed to process')
         } else {
