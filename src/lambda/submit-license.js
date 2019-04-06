@@ -40,6 +40,7 @@ function getFullDependencyData (dependencies) {
         data.push(dependencyData)
         if (dependencyData.dependencies) {
           getFullDependencyData(dependencyData.dependencies)
+          cb()
         }
         cb()
       })
