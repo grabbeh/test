@@ -1,4 +1,5 @@
 import axios from 'axios'
+import semver from 'semver'
 import _ from 'lodash'
 
 export async function handler (event, context) {
@@ -8,39 +9,42 @@ export async function handler (event, context) {
   try {
     const res = await axios(url)
     let { dependencies } = res.data
-    let urls = getURLs(dependencies)
-    let data = await mapUrls(urls)
+    let data = await getData(dependencies)
     return {
       statusCode: 200,
-      body: JSON.stringify(data)
+      body: JSON.stringify(_.flatten(data))
     }
   } catch (err) {
-    return { statusCode: 500 }
+    console.log(err)
+    return { statusCode: 500, body: JSON.stringify({ data: 'Error' }) }
   }
-}
-
-const mapUrls = async urls => {
-  let dependencyData = []
-  for (var i = 0, l = urls.length; i < l; i++) {
-    let url = urls[i]
-    let { data } = await axios(url)
-    dependencyData.push(data)
-  }
-  return dependencyData
 }
 
 const getURLs = dependencies => {
   return Object.entries(dependencies).map(i => {
     let [key, value] = i
-    return getNpmURL(key, value)
+    let version = semver.valid(semver.coerce(value))
+    if (version !== null) return getNpmURL(key, version)
   })
 }
 
 const getNpmURL = (name, version) => {
-  if (typeof version === 'string') {
-    if (version.includes('~') || version.includes('^')) {
-      version = version.substr(1)
-    }
-  }
   return `https://registry.npmjs.org/${name}/${version}`
+}
+
+const getData = async dependencies => {
+  let urls = getURLs(dependencies).filter(f => {
+    return f !== undefined
+  })
+  return Promise.all(
+    urls.map(async url => {
+      let { data } = await axios(url)
+      let { dependencies } = data
+      if (dependencies && Object.keys(dependencies).length > 0) {
+        return [data].concat(await getData(data.dependencies))
+      } else {
+        return data
+      }
+    })
+  )
 }
