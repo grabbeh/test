@@ -13,7 +13,6 @@ const Test = () => {
     fetch('/.netlify/functions/test')
       .then(response => response.json())
       .then(response => {
-        console.log(response)
         setLicenseData(response)
         setLoading(false)
       })
@@ -33,13 +32,13 @@ const Test = () => {
         <Box>
           <Flex flexWrap='wrap'>
             {licenseData &&
-              licenseData.map(i => (
-                <Box width={200} p={2} bg='blue' mt={3} mr={3}>
+              licenseData.map((l, i) => (
+                <Box key={i} width={200} p={2} bg='navy' mt={3} mr={3}>
                   <Text color='white' fontWeight='bold' fontSize={3}>
-                    {i.name}
+                    {l.name}
                   </Text>
-                  <Text fontWeight='bold' fontSize={3}>
-                    {i.license}
+                  <Text color='orange' fontSize={2}>
+                    {l.license}
                   </Text>
                 </Box>
               ))}
