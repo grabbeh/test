@@ -1,8 +1,9 @@
-import _ from 'lodash'
 import axios from 'axios'
+import _ from 'lodash'
 import semver from 'semver'
 
 export async function handler (event, context) {
+  console.log('Fn called')
   let url =
     'https://raw.githubusercontent.com/request/request/master/package.json' ||
     JSON.parse(event.body).url
