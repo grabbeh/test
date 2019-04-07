@@ -11,9 +11,9 @@ const Test = () => {
   useEffect(() => {
     setLoading(true)
     fetch('/.netlify/functions/test')
-      .then(response => response.json())
-      .then(response => {
-        setLicenseData(response)
+      .then(r => r.json())
+      .then(r => {
+        setLicenseData(r)
         setLoading(false)
       })
   }, [])
