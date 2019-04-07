@@ -1,15 +1,17 @@
-var axios = require('axios')
+import axios from 'axios'
 
 export async function handler (event, context) {
   let url =
     'https://raw.githubusercontent.com/request/request/master/package.json'
   try {
     let response = await axios(url)
+    console.log(response)
     return {
       statusCode: 200,
       body: JSON.stringify(response.data)
     }
   } catch (e) {
+    console.log(e)
     return {
       statusCode: 500,
       body: JSON.stringify({ data: e })
