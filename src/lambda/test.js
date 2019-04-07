@@ -3,28 +3,18 @@ import _ from 'lodash'
 
 export async function handler (event, context) {
   let url =
-    'https://raw.githubusercontent.com/request/request/master/package.json'
-
+    'https://raw.githubusercontent.com/request/request/master/package.json' ||
+    JSON.parse(event.body).url
   try {
     const res = await axios(url)
     let { dependencies } = res.data
-    let names = _.keys(dependencies)
-    let urls = names.map(name => {
-      let version = dependencies[name]
-      if (typeof version === 'string') {
-        if (version.includes('~') || version.includes('^')) {
-          version = version.substr(1)
-        }
-      }
-      return `https://registry.npmjs.org/${name}/${version}`
-    })
+    let urls = getURLs(dependencies)
     let data = await mapUrls(urls)
     return {
       statusCode: 200,
       body: JSON.stringify(data)
     }
   } catch (err) {
-    console.log(err)
     return { statusCode: 500 }
   }
 }
@@ -37,4 +27,20 @@ const mapUrls = async urls => {
     dependencyData.push(data)
   }
   return dependencyData
+}
+
+const getURLs = dependencies => {
+  return Object.entries(dependencies).map(i => {
+    let [key, value] = i
+    return getNpmURL(key, value)
+  })
+}
+
+const getNpmURL = (name, version) => {
+  if (typeof version === 'string') {
+    if (version.includes('~') || version.includes('^')) {
+      version = version.substr(1)
+    }
+  }
+  return `https://registry.npmjs.org/${name}/${version}`
 }
