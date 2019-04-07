@@ -1,5 +1,5 @@
-var axios = require('axios')
-var _ = require('lodash')
+import axios from 'axios'
+import _ from 'lodash'
 
 export async function handler (event, context) {
   let url =
