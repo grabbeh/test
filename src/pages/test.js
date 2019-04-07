@@ -24,7 +24,7 @@ const Test = () => {
     <Layout>
       <Box p={4}>
         {loading && <Box p={3}>Loading</Box>}
-        <Box mt={3}>
+        <Box>
           {licenseData && (
             <Text fontSize={3} fontWeight='bold'>
               Dependencies
