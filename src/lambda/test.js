@@ -12,7 +12,7 @@ export async function handler (event, context) {
     let data = await getData(dependencies)
     return {
       statusCode: 200,
-      body: JSON.stringify(_.flatten(data))
+      body: JSON.stringify(_.flattenDeep(data))
     }
   } catch (err) {
     console.log(err)
