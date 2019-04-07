@@ -14,9 +14,10 @@ const Example = () => {
   let [url, setURL] = useState()
   useEffect(() => {
     setURL('')
-    fetch('/.netlify/functions/hello')
+    fetch('/.netlify/functions/submit-license.js')
       .then(response => response.json())
       .then(message => {
+        console.log(message)
         setMessage(message.msg)
       })
   }, [])

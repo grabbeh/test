@@ -1,24 +1,21 @@
-var request = require('request')
-var _ = require('lodash')
-var async = require('async')
 var axios = require('axios')
 
 export async function handler (event, context) {
-  if (event.httpMethod !== 'POST') {
+  let url =
+    'https://raw.githubusercontent.com/request/request/master/package.json'
+  try {
+    let response = await axios(url)
     return {
-      statusCode: 410,
-      body: 'Unsupported Request Method'
+      statusCode: 200,
+      body: JSON.stringify(response.data)
+    }
+  } catch (e) {
+    return {
+      statusCode: 500
     }
   }
-  var url = JSON.parse(event.body).url
-  request({ url, json: true }, (error, response, body) => {
-    if (error) console.log(error)
-    var data = []
-    getFullDependencyData(body.dependencies, data)
-    // extract out so function accepts either package.json file from github or details of data from npm
-  })
 }
-
+/*
 // dependencies are an object structure of { request: 1.0.0, express: 2.0.0 } etc
 function getFullDependencyData (dependencies, data) {
   var deps = _.keys(dependencies)
@@ -59,3 +56,4 @@ function getFullDependencyData (dependencies, data) {
     }
   )
 }
+*/
