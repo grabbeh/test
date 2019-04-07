@@ -11,10 +11,12 @@ export async function handler (event, context) {
     }
   } catch (e) {
     return {
-      statusCode: 500
+      statusCode: 500,
+      body: JSON.stringify({ data: e })
     }
   }
 }
+
 /*
 // dependencies are an object structure of { request: 1.0.0, express: 2.0.0 } etc
 function getFullDependencyData (dependencies, data) {
