@@ -3,51 +3,51 @@ import fetch from 'isomorphic-fetch'
 import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
-import Button from '../components/Button'
-import axios from 'axios'
+import Flex from '../components/Flex'
 
-const Example = () => {
-  let [message, setMessage] = useState(false)
+const Test = () => {
+  let [licenseData, setLicenseData] = useState()
+  let [loading, setLoading] = useState(false)
   useEffect(() => {
-    fetch('/.netlify/functions/hello')
+    setLoading(true)
+    fetch('/.netlify/functions/test')
       .then(response => response.json())
-      .then(message => {
-        setMessage(message.msg)
+      .then(response => {
+        console.log(response)
+        setLicenseData(response)
+        setLoading(false)
       })
   }, [])
-
-  const postTest = e => {
-    axios
-      .post('/.netlify/functions/test', {
-        test: 'Hello World'
-      })
-      .then(function (response) {
-        console.log(response)
-      })
-      .catch(function (error) {
-        console.log(error)
-      })
-    e.preventDefault()
-  }
 
   return (
     <Layout>
       <Box p={4}>
-        <Box mb={4}>
-          <Box p={4} bg='red'>
-            <Text color='white' fontWeight='bold' fontSize={5}>
-              {message}
+        {loading && <Box p={3}>Loading</Box>}
+        <Box mt={3}>
+          {licenseData && (
+            <Text fontSize={3} fontWeight='bold'>
+              Dependencies
             </Text>
-          </Box>
+          )}
         </Box>
-        <Box p={3}>
-          <Button onClick={postTest} px={3} py={2}>
-            <Text fontSize={3}>Click me</Text>
-          </Button>
+        <Box>
+          <Flex flexWrap='wrap'>
+            {licenseData &&
+              licenseData.map(i => (
+                <Box width={200} p={2} bg='blue' mt={3} mr={3}>
+                  <Text color='white' fontWeight='bold' fontSize={3}>
+                    {i.name}
+                  </Text>
+                  <Text fontWeight='bold' fontSize={3}>
+                    {i.license}
+                  </Text>
+                </Box>
+              ))}
+          </Flex>
         </Box>
       </Box>
     </Layout>
   )
 }
 
-export default Example
+export default Test

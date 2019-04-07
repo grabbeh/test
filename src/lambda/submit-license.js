@@ -12,13 +12,14 @@ export async function handler (event, context) {
   var url = JSON.parse(event.body).url
   request({ url, json: true }, (error, response, body) => {
     if (error) console.log(error)
-    getFullDependencyData(body.dependencies)
+    var data = []
+    getFullDependencyData(body.dependencies, data)
     // extract out so function accepts either package.json file from github or details of data from npm
   })
 }
 
 // dependencies are an object structure of { request: 1.0.0, express: 2.0.0 } etc
-function getFullDependencyData (dependencies) {
+function getFullDependencyData (dependencies, data) {
   var deps = _.keys(dependencies)
   var urls = deps.map(dep => {
     var version = dependencies[dep]
@@ -30,7 +31,6 @@ function getFullDependencyData (dependencies) {
     return `https://registry.npmjs.org/${dep}/${version}`
   })
   // need to decide data structure for sub-dependencies
-  var data = []
   async.each(
     urls,
     (url, cb) => {
@@ -39,6 +39,7 @@ function getFullDependencyData (dependencies) {
 
         data.push(dependencyData)
         if (dependencyData.dependencies) {
+          console.log('Sub dependencies')
           getFullDependencyData(dependencyData.dependencies)
           cb()
         }
