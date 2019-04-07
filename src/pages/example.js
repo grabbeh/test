@@ -14,7 +14,7 @@ const Example = () => {
   let [url, setURL] = useState()
   useEffect(() => {
     setURL('')
-    fetch('/.netlify/functions/submit-license.js')
+    fetch('/.netlify/functions/submit-license')
       .then(response => response.json())
       .then(message => {
         console.log(message)
