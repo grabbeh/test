@@ -9,10 +9,12 @@ const Test = () => {
   let [licenseData, setLicenseData] = useState()
   let [loading, setLoading] = useState(false)
   useEffect(() => {
+    setLicenseData(null)
     setLoading(true)
     fetch('/.netlify/functions/test')
       .then(r => r.json())
       .then(r => {
+        console.log(r)
         setLicenseData(r)
         setLoading(false)
       })
