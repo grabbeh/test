@@ -1,6 +1,6 @@
+import _ from 'lodash'
 import axios from 'axios'
 import semver from 'semver'
-import _ from 'lodash'
 
 export async function handler (event, context) {
   let url =
@@ -9,7 +9,7 @@ export async function handler (event, context) {
   try {
     const res = await axios(url)
     let { dependencies } = res.data
-    let data = await getData(dependencies)
+    let data = await getTreeData(dependencies)
     return {
       statusCode: 200,
       body: JSON.stringify(_.flattenDeep(data))
@@ -32,7 +32,7 @@ const getNpmURL = (name, version) => {
   return `https://registry.npmjs.org/${name}/${version}`
 }
 
-const getData = async dependencies => {
+const getTreeData = async dependencies => {
   let urls = getURLs(dependencies).filter(f => {
     return f !== undefined
   })
@@ -41,7 +41,7 @@ const getData = async dependencies => {
       let { data } = await axios(url)
       let { dependencies } = data
       if (dependencies && Object.keys(dependencies).length > 0) {
-        return [data].concat(await getData(data.dependencies))
+        return [data].concat(await getTreeData(data.dependencies))
       } else {
         return data
       }
