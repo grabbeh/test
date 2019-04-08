@@ -14,7 +14,7 @@ const Example = () => {
   let [url, setURL] = useState()
   useEffect(() => {
     setURL('')
-    fetch('/.netlify/functions/submit-license')
+    fetch('/.netlify/functions/hello')
       .then(response => response.json())
       .then(message => {
         console.log(message)
@@ -46,7 +46,9 @@ const Example = () => {
       <Box p={4}>
         <Box mb={4}>
           <Box p={4} bg='red'>
-            <Text color='white' fontWeight='bold' fontSize={5} />
+            <Text color='white' fontWeight='bold' fontSize={5}>
+              {message}
+            </Text>
           </Box>
         </Box>
         <Box p={3}>
