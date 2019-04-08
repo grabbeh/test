@@ -1,4 +1,4 @@
-import request from 'request'
+import axios from 'axios'
 
 export async function handler (event, context, callback) {
   return {
