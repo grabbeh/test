@@ -1,6 +1,6 @@
-import flattenDeep from 'lodash.flattendeep'
-import semver from 'semver'
-import axios from 'axios'
+var flattenDeep = require('lodash.flattendeep')
+var semver = require('semver')
+var axios = require('axios')
 
 export async function handler (event, context) {
   let url =
