@@ -1,6 +1,6 @@
-const _ = require('lodash')
-const semver = require('semver')
-const axios = require('axios')
+import flattenDeep from 'flattenDeep'
+import semver from 'semver'
+import axios from 'axios'
 
 export async function handler (event, context) {
   let url =
@@ -12,7 +12,7 @@ export async function handler (event, context) {
     let data = await getTreeData(dependencies)
     return {
       statusCode: 200,
-      body: JSON.stringify(_.flattenDeep(data))
+      body: JSON.stringify(flattenDeep(data))
     }
   } catch (err) {
     console.log(err)
