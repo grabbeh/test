@@ -16,9 +16,8 @@ const Example = () => {
     setURL('')
     fetch('/.netlify/functions/submit-license')
       .then(response => response.json())
-      .then(data => {
-        console.log(numbers)
-        setMessage(data.numbers)
+      .then(response => {
+        setMessage(response.data)
       })
   }, [])
 
@@ -47,7 +46,7 @@ const Example = () => {
         <Box mb={4}>
           <Box p={4} bg='red'>
             <Text color='white' fontWeight='bold' fontSize={5}>
-              {numbers.map(n => ({ n }))}
+              {numbers && numbers.map(n => <div>{n}</div>)}
             </Text>
           </Box>
         </Box>
