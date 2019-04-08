@@ -1,4 +1,4 @@
-import axios from 'axios'
+import semver from 'semver'
 
 export async function handler (event, context, callback) {
   return {
