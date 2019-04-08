@@ -10,7 +10,6 @@
     "babel-plugin-styled-components": "^1.10.0",
     "es6-promise": "^4.2.6",
     "gatsby": "^2.2.11",
-    "gatsby-plugin-netlify-functions": "0.0.3",
     "gatsby-plugin-react-helmet": "^3.0.11",
     "gatsby-plugin-styled-components": "^3.0.7",
     "graphql": "^14.2.1",

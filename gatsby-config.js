@@ -17,15 +17,5 @@ module.exports = {
     description: `Check yo' licences, fool`,
     author: `@grabbeh`
   },
-  plugins: [
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-plugin-netlify-functions`,
-      options: {
-        functionsSrc: `${__dirname}/src/lambda`,
-        functionsOutput: `${__dirname}/lambda`
-      }
-    }
-  ]
+  plugins: [`gatsby-plugin-react-helmet`, `gatsby-plugin-styled-components`]
 }
