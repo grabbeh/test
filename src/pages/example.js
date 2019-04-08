@@ -46,9 +46,7 @@ const Example = () => {
       <Box p={4}>
         <Box mb={4}>
           <Box p={4} bg='red'>
-            <Text color='white' fontWeight='bold' fontSize={5}>
-              {message}
-            </Text>
+            <Text color='white' fontWeight='bold' fontSize={5} />
           </Box>
         </Box>
         <Box p={3}>
