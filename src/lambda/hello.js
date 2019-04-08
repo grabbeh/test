@@ -1,4 +1,4 @@
-import semver from 'semver'
+import React from 'react'
 
 export async function handler (event, context, callback) {
   return {
