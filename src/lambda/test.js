@@ -1,4 +1,4 @@
-import flattenDeep from 'flattenDeep'
+import flattenDeep from 'lodash.flattenDeep'
 import semver from 'semver'
 import axios from 'axios'
 
