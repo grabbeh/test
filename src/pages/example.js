@@ -9,16 +9,16 @@ import axios from 'axios'
 import Flex from '../components/Flex'
 
 const Example = () => {
-  let [message, setMessage] = useState(false)
+  let [numbers, setMessage] = useState(false)
   let [licenseData, setLicenseData] = useState()
   let [url, setURL] = useState()
   useEffect(() => {
     setURL('')
-    fetch('/.netlify/functions/hello')
+    fetch('/.netlify/functions/submit-license')
       .then(response => response.json())
-      .then(message => {
-        console.log(message)
-        setMessage(message.msg)
+      .then(data => {
+        console.log(numbers)
+        setMessage(data.numbers)
       })
   }, [])
 
@@ -47,7 +47,7 @@ const Example = () => {
         <Box mb={4}>
           <Box p={4} bg='red'>
             <Text color='white' fontWeight='bold' fontSize={5}>
-              {message}
+              {numbers.map(n => ({ n }))}
             </Text>
           </Box>
         </Box>
