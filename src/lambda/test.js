@@ -1,6 +1,6 @@
-const axios = require('axios')
 const _ = require('lodash')
 const semver = require('semver')
+const axios = require('axios')
 
 export async function handler (event, context) {
   let url =
