@@ -1,3 +1,5 @@
+import flattenDeep from 'lodash.flattendeep'
+
 export async function handler (event, context, callback) {
   return {
     statusCode: 200,
