@@ -1,4 +1,5 @@
-var request = require('request')
+import request from 'request'
+
 export async function handler (event, context, callback) {
   return {
     statusCode: 200,
