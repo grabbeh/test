@@ -38,10 +38,10 @@ const getTreeData = async dependencies => {
   })
   return Promise.all(
     urls.map(async url => {
-      let { data } = await axios(url)
+      let { data } = axios(url)
       let { dependencies } = data
       if (dependencies && Object.keys(dependencies).length > 0) {
-        return [data].concat(await getTreeData(data.dependencies))
+        return [data].concat(getTreeData(data.dependencies))
       } else {
         return data
       }
