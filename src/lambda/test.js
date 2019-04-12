@@ -41,7 +41,7 @@ const getTreeData = async dependencies => {
       let { data } = await axios(url)
       let { dependencies } = data
       if (dependencies && Object.keys(dependencies).length > 0) {
-        return [data].concat(await getTreeData(data.dependencies))
+        return [data].concat(getTreeData(data.dependencies))
       } else {
         return data
       }
