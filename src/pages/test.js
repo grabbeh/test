@@ -22,7 +22,7 @@ const Test = () => {
 
   return (
     <Layout>
-      <Box p={4}>
+      <Box p={[2, 4]}>
         {loading && <Box p={3}>Loading</Box>}
         <Box>
           {licenseData && (
@@ -35,7 +35,7 @@ const Test = () => {
           <Flex flexWrap='wrap'>
             {licenseData &&
               licenseData.map((l, i) => (
-                <Box key={i} width={200} p={2} bg='navy' mt={3} mr={3}>
+                <Box key={i} width={[1,200]} p={2} bg='navy' mt={3} mr={3}>
                   <Text color='white' fontWeight='bold' fontSize={3}>
                     {l.name}
                   </Text>
