@@ -29,6 +29,7 @@ const Test = () => {
             <Text fontSize={3} fontWeight='bold'>
               Dependencies
             </Text>
+            <Text fontSize={3}>{licenseData.length}</Text>
           )}
         </Box>
         <Box>
