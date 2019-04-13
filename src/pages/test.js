@@ -26,17 +26,19 @@ const Test = () => {
         {loading && <Box p={3}>Loading</Box>}
         <Box>
           {licenseData && (
+    <Box>
             <Text fontSize={3} fontWeight='bold'>
               Dependencies
             </Text>
             <Text fontSize={3}>{licenseData.length}</Text>
+    </Box>
           )}
         </Box>
         <Box>
           <Flex flexWrap='wrap'>
             {licenseData &&
               licenseData.map((l, i) => (
-                <Box key={i} width={[1,200]} p={2} bg='navy' mt={3} mr={3}>
+                <Box key={i} width={[1,200]} p={2} bg='navy' mt={3} mr={[0,3]}>
                   <Text color='white' fontWeight='bold' fontSize={3}>
                     {l.name}
                   </Text>
