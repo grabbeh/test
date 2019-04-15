@@ -40,12 +40,12 @@ const Example = () => {
       <Box maxWidth={1200} p={[2, 4]}>
         <form onSubmit={postURL} name='url-collection' method='POST'>
           <Input
-            width={800}
+            width={[1, 800]}
             type='text'
             handleChange={inputChange}
             name='url'
             label='Hit me with a package.json file'
-            fontSize={4}
+            fontSize={[2, 4]}
             value={url}
           />
           <Box mt={3}>
