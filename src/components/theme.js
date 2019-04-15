@@ -37,6 +37,7 @@ const theme = {
   },
   colors: {
     MIT: '#ff725c',
+    'BSD': '#ffdfdf',
     'BSD-3-Clause': '#96ccff',
     'BSD-2-Clause': '#9eebcf',
     'Public domain': 'papayawhip',
