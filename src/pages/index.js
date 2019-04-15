@@ -67,17 +67,21 @@ const Example = () => {
             )}
           </Box>
           <Box>
-            {licenseData &&
-              licenseData.map((l, i) => {
-                return (
-                  <Dependency
-                    number={i + 1}
-                    key={l.parent.name}
-                    parent={l.parent}
-                    dependencies={l.dependencies}
-                  />
-                )
-              })}
+            <Flex justifyContent='center' flexWrap='wrap'>
+              {licenseData &&
+                licenseData.map((l, i) => {
+                  return (
+                    <Box mr={6}>
+                      <Dependency
+                        number={i + 1}
+                        key={l.parent.name}
+                        parent={l.parent}
+                        dependencies={l.dependencies}
+                      />
+                    </Box>
+                  )
+                })}
+            </Flex>
           </Box>
         </Box>
       </Box>
