@@ -36,6 +36,12 @@ const theme = {
     xLarge: `360ms`
   },
   colors: {
+    MIT: '#ff725c',
+    'BSD-3-Clause': '#96ccff',
+    'BSD-2-Clause': '#9eebcf',
+    'Public domain': 'papayawhip',
+    'Apache-2.0': '#eee',
+    ISC: '#fbf1a9',
     'g-pink': '#F0DBBC',
     'g-red': '#FF6A56',
     petrol: '#31505F',
