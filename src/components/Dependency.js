@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react'
-import Box from './Box'
 import Text from './Text'
 import { FiCornerDownRight } from 'react-icons/fi'
+import LicenseBar from './LicenseBar'
 
 const Dependency = ({ parent, dependencies, number }) => {
   return (
     <Fragment>
-      <Box
+      <LicenseBar
         borderColor='black-50'
         border='solid 4px'
         width={200}
         p={3}
         mt={3}
-        bg={parent.license}
+        license={parent.license}
       >
         <FiCornerDownRight />
         <Text fontWeight='bold' fontSize={3}>
@@ -26,7 +26,7 @@ const Dependency = ({ parent, dependencies, number }) => {
             ))}
           </Text>
         )}
-      </Box>
+      </LicenseBar>
     </Fragment>
   )
 }
