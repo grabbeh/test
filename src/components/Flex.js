@@ -10,6 +10,7 @@ import {
   propTypes
 } from 'styled-system'
 import theme from './theme'
+import PropTypes from 'prop-types'
 
 const Flex = styled.div`
   display: flex;
