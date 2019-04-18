@@ -1,6 +1,7 @@
 import flattenDeep from 'lodash.flattendeep'
 import semver from 'semver'
 import axios from 'axios'
+import { stringify } from 'flatted/esm'
 
 export async function handler (event, context) {
   let url =
@@ -8,18 +9,23 @@ export async function handler (event, context) {
     JSON.parse(event.body).url
   try {
     const res = await axios(url)
+    let { dependencies } = res.data
 
-    let { dependencies, name, version } = res.data
+    // scoped packages error
+    // version not found error
+
+    // ideally need to fetch details for main package - although in reality that may not
+    // be on npm anyway - can just obtain license from package.json file :D
     // let primary = await axios(getNpmURL(name, version))
     let tree = await getTreeData(dependencies)
-
     return {
       statusCode: 200,
-      body: JSON.stringify(flattenDeep(tree))
+      // is flattenDeep needed?
+      body: JSON.stringify(tree)
     }
   } catch (err) {
     console.log(err)
-    return { statusCode: 500, body: JSON.stringify({ data: 'Error' }) }
+    return { statusCode: 500, body: stringify({ data: err }) }
   }
 }
 
@@ -39,18 +45,23 @@ const getTreeData = async dependencies => {
   let urls = getURLs(dependencies).filter(f => {
     return f !== undefined
   })
-  return Promise.all(
-    urls.map(async url => {
-      let { data } = await axios(url)
-      let { dependencies } = data
-      if (dependencies && Object.keys(dependencies).length > 0) {
-        return {
-          parent: data,
-          dependencies: await getTreeData(dependencies)
-        }
-      } else {
-        return { parent: data }
+
+  let promises = urls.map(async url => {
+    let { data } = await axios(url)
+    let { dependencies } = data
+    console.log(data)
+    if (dependencies && Object.keys(dependencies).length > 0) {
+      return {
+        parent: data,
+        dependencies: await getTreeData(dependencies)
       }
-    })
-  )
+    } else {
+      return { parent: data }
+    }
+  })
+  // https://stackoverflow.com/questions/30362733/handling-errors-in-promise-all
+  let results = await Promise.all(promises.map(p => p.catch(e => e)))
+  // const valid = results.filter(result => !(result instanceof Error))
+  console.log(results)
+  return results
 }

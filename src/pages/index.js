@@ -55,7 +55,13 @@ const Example = () => {
           </Box>
         </form>
         <Box>
-          {loading && <Box>Loading</Box>}
+          {loading && (
+            <Box py={3}>
+              <Text fontSize={3} fontWeight='bold'>
+                Loading
+              </Text>
+            </Box>
+          )}
           <Box>
             {licenseData && (
               <Box mt={3}>
@@ -71,10 +77,9 @@ const Example = () => {
               {licenseData &&
                 licenseData.map((l, i) => {
                   return (
-                    <Box mr={6}>
+                    <Box key={l.parent} mr={6}>
                       <Dependency
                         number={i + 1}
-                        key={l.parent.name}
                         parent={l.parent}
                         dependencies={l.dependencies}
                       />

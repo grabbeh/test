@@ -20,8 +20,7 @@
     "react-helmet": "^5.2.0",
     "react-icons": "^3.5.0",
     "react-pose": "^4.0.8",
-    "styled-components": "^4.2.0",
-    "superbox": "^2.1.0"
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "http-proxy-middleware": "^0.19.1",
@@ -36,7 +35,7 @@
     "develop": "gatsby develop",
     "start": "run-p start:**",
     "start:app": "gatsby serve -p 8000",
-    "start:lambda": "netlify-lambda serve src/lambda",
+    "start:lambda": "netlify-lambda serve src/lambda -t 60",
     "build": "run-p build:**",
     "build:app": "gatsby build",
     "build:lambda": "netlify-lambda build src/lambda"
