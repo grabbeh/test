@@ -73,7 +73,7 @@ const Example = () => {
             )}
           </Box>
           <Box>
-            <Flex justifyContent='center' flexWrap='wrap'>
+            <Flex flexWrap='wrap'>
               {licenseData &&
                 licenseData.map((l, i) => {
                   return (
