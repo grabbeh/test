@@ -37,7 +37,7 @@ const Example = () => {
 
   return (
     <Layout>
-      <Box maxWidth={1200} p={[2, 4]}>
+      <Box p={[2, 4]}>
         <form onSubmit={postURL}>
           <Input
             width={[1, 800]}
