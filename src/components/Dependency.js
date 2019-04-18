@@ -9,7 +9,7 @@ const Dependency = ({ parent, dependencies, number }) => {
       <LicenseBar
         borderColor='black-50'
         border='solid 4px'
-        width={200}
+        width={[1,150]}
         p={3}
         mt={3}
         license={parent.license}
