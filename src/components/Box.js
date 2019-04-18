@@ -51,8 +51,8 @@ Box.defaultProps = {
 }
 
 Box.propTypes = {
-  ...space.PropTypes,
-  ...borders.PropTypes,
+  ...space.propTypes,
+  ...borders.propTypes,
   ...color.propTypes,
   ...width.propTypes,
   ...fontSize.propTypes,
