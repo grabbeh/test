@@ -22,13 +22,13 @@ Flex.defaultProps = {
 }
 
 Flex.propTypes = {
-  ...propTypes.space,
-  ...propTypes.width,
-  ...propTypes.color,
-  ...propTypes.alignItems,
-  ...propTypes.justifyContent,
-  ...propTypes.flexWrap,
-  ...propTypes.flexDirection
+  ...space.propTypes,
+  ...width.propTypes,
+  ...color.propTypes,
+  ...alignItems.propTypes,
+  ...justifyContent.propTypes,
+  ...flexWrap.propTypes,
+  ...flexDirection.propTypes
 }
 
 Flex.displayName = 'Flex'
