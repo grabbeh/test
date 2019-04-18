@@ -21,7 +21,7 @@
     "react-icons": "^3.5.0",
     "react-pose": "^4.0.8",
     "styled-components": "^4.2.0",
-    "styled-system": "4.1.1"
+    "styled-system": "4.1.0"
   },
   "devDependencies": {
     "http-proxy-middleware": "^0.19.1",
