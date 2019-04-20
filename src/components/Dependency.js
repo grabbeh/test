@@ -7,11 +7,13 @@ const Dependency = ({ parent, dependencies, number }) => {
   return (
     <Fragment>
       <LicenseBar
-        borderColor='black-50'
-        border='solid 4px'
-        width={[1,150]}
+        key={parent.name}
+        borderColor='black'
+        border='solid 3px'
+        width={[1, 150]}
         p={3}
         mt={3}
+        borderRadius={2}
         license={parent.license}
       >
         <FiCornerDownRight />
@@ -22,7 +24,7 @@ const Dependency = ({ parent, dependencies, number }) => {
         {dependencies && (
           <Text>
             {dependencies.map((d, i) => (
-              <Dependency number={i + 1} key={d.name} {...d} />
+              <Dependency number={i + 1} key={i} {...d} />
             ))}
           </Text>
         )}

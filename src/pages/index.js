@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
@@ -6,10 +6,13 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import axios from 'axios'
 import Flex from '../components/Flex'
+import _ from 'lodash'
 import Dependency from '../components/Dependency'
+import Summary from '../components/Summary'
 
 const Example = () => {
   let [licenseData, setLicenseData] = useState(null)
+  let [combined, setCombined] = useState(null)
   let [loading, setLoading] = useState(false)
   let [url, setURL] = useState('')
 
@@ -27,7 +30,8 @@ const Example = () => {
       .then(r => {
         console.log(r.data)
         setLoading(false)
-        setLicenseData(r.data)
+        setLicenseData(r.data.tree)
+        setCombined(r.data.combined)
       })
       .catch(function (error) {
         console.log(error)
@@ -44,13 +48,13 @@ const Example = () => {
             type='text'
             handleChange={inputChange}
             name='url'
-            label='Hit me with a package.json file'
+            label='Please provide a link to a package.json file'
             fontSize={[2, 4]}
             value={url}
           />
           <Box mt={3}>
             <Button type='submit' px={3} py={2}>
-              <Text fontSize={3}>Click me</Text>
+              <Text fontSize={3}>Submit</Text>
             </Button>
           </Box>
         </form>
@@ -63,21 +67,27 @@ const Example = () => {
             </Box>
           )}
           <Box>
-            {licenseData && (
-              <Box mt={3}>
-                <Text fontSize={3} fontWeight='bold'>
-                  Dependencies
-                </Text>
-                <Text fontSize={3}>{licenseData.length}</Text>
-              </Box>
+            {combined && (
+              <Fragment>
+                <Box mt={3}>
+                  <Text fontSize={3} fontWeight='bold'>
+                    Dependencies
+                  </Text>
+                  <Text fontSize={3}>{combined.length}</Text>
+                </Box>
+                <Box>
+                  <Summary dependencies={combined} />
+                </Box>
+              </Fragment>
             )}
           </Box>
+
           <Box>
             <Flex flexWrap='wrap'>
               {licenseData &&
                 licenseData.map((l, i) => {
                   return (
-                    <Box key={l.parent} mr={6}>
+                    <Box key={l.parent.name} mr={6}>
                       <Dependency
                         number={i + 1}
                         parent={l.parent}
