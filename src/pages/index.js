@@ -87,7 +87,7 @@ const Example = () => {
               {licenseData &&
                 licenseData.map((l, i) => {
                   return (
-                    <Box key={l.parent.name} mr={6}>
+                    <Box key={l.parent.name}>
                       <Dependency
                         number={i + 1}
                         parent={l.parent}

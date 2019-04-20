@@ -13,6 +13,7 @@ const Dependency = ({ parent, dependencies, number }) => {
         width={[1, 150]}
         p={3}
         mt={3}
+        mr={5}
         borderRadius={2}
         license={parent.license}
       >
