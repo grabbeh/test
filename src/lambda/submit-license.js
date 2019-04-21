@@ -9,8 +9,8 @@ export async function handler (event, context) {
     // 'https://raw.githubusercontent.com/request/request/master/package.json' ||
     JSON.parse(event.body).url
   try {
-    const res = await axios(url)
-    let { dependencies } = res.data
+    const { data } = await axios(url)
+    let { dependencies } = data
 
     // scoped packages error
     // version not found error - just grab repository details and then get latest version?
@@ -22,7 +22,7 @@ export async function handler (event, context) {
     let combined = aggregate(tree)
     return {
       statusCode: 200,
-      body: JSON.stringify({ tree, combined })
+      body: JSON.stringify({ tree, combined, data })
     }
   } catch (err) {
     console.log(err)

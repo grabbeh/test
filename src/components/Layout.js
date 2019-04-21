@@ -1,5 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
+import Box from '../components/Box'
 import '../index.css'
 
 const Layout = props => {
@@ -10,7 +11,7 @@ const Layout = props => {
         <meta name='viewport' content='width=device-width' />
         <title>License checker</title>
       </Helmet>
-      <div>{props.children}</div>
+      <Box p={[2, 4]}>{props.children}</Box>
     </div>
   )
 }

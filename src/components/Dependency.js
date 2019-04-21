@@ -10,15 +10,15 @@ const Dependency = ({ parent, dependencies, number }) => {
         key={parent.name}
         borderColor='black'
         border='solid 3px'
-        width={[1, 150]}
+        width={[0.6, 150]}
         p={3}
         mt={3}
-        mr={5}
+        mr={[3, 5]}
         borderRadius={2}
         license={parent.license}
       >
         <FiCornerDownRight />
-        <Text fontWeight='bold' fontSize={3}>
+        <Text fontWeight='bold' fontSize={[2, 3]}>
           {number}. {parent.name}
         </Text>
         <Text fontSize={2}>{parent.license}</Text>

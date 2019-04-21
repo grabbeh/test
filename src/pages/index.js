@@ -6,9 +6,9 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import axios from 'axios'
 import Flex from '../components/Flex'
-import _ from 'lodash'
 import Dependency from '../components/Dependency'
 import Summary from '../components/Summary'
+import Header from '../components/Header'
 
 const Example = () => {
   let [licenseData, setLicenseData] = useState(null)
@@ -17,11 +17,12 @@ const Example = () => {
   let [url, setURL] = useState('')
 
   const inputChange = e => {
-    console.log(e.target.value)
     setURL(e.target.value)
   }
 
   const postURL = e => {
+    setCombined(null)
+    setLicenseData(null)
     setLoading(true)
     axios
       .post('/.netlify/functions/submit-license', {
@@ -41,7 +42,8 @@ const Example = () => {
 
   return (
     <Layout>
-      <Box p={[2, 4]}>
+      <Header />
+      <Box>
         <form onSubmit={postURL}>
           <Input
             width={[1, 800]}
@@ -87,7 +89,7 @@ const Example = () => {
               {licenseData &&
                 licenseData.map((l, i) => {
                   return (
-                    <Box key={l.parent.name}>
+                    <Box mr={3} key={l.parent.name}>
                       <Dependency
                         number={i + 1}
                         parent={l.parent}
