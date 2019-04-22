@@ -73,7 +73,7 @@ const Example = () => {
                 <Box mt={3}>
                   <Flex justifyContent='flex-end'>
                     <Button type='submit' px={3} py={2}>
-                      <Text fontSize={3}>Submit</Text>
+                      <Text fontSize={2}>SUBMIT</Text>
                     </Button>
                   </Flex>
                 </Box>
@@ -91,7 +91,7 @@ const Example = () => {
                 <Box mt={3}>
                   <Flex justifyContent='flex-end'>
                     <Button type='submit' px={3} py={2}>
-                      <Text fontSize={3}>Submit</Text>
+                      <Text fontSize={2}>SUBMIT</Text>
                     </Button>
                   </Flex>
                 </Box>
