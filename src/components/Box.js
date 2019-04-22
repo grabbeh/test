@@ -25,12 +25,8 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import theme from './theme'
 
-const boxShadow = props => ({
-  boxShadow: `${props.theme.boxShadow[props.boxShadow]}`
-})
-
 const StyledBox = styled.div`
-  ${boxShadow} ${borders} ${space} ${size} ${maxWidth} ${minWidth} ${minHeight} ${width} ${height} ${fontWeight} ${fontSize} ${fontFamily} ${color} ${borderRadius} ${position} ${top} ${bottom} ${left} ${right} ${zIndex} ${borderColor};
+  ${borders} ${space} ${size} ${maxWidth} ${minWidth} ${minHeight} ${width} ${height} ${fontWeight} ${fontSize} ${fontFamily} ${color} ${borderRadius} ${position} ${top} ${bottom} ${left} ${right} ${zIndex} ${borderColor};
 `
 
 // To recognise propTypes, we have to create new Box to wrap StyledBox

@@ -10,8 +10,6 @@ const theme = {
     sansSerif:
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif"
   },
-  rotation: [45, 90, 120, 150],
-  skew: [5, 10, 15, 20, 25, 30],
   boxShadow: [
     `0 0 2px 0 rgba(0,0,0,.08),0 1px 4px 0 rgba(0,0,0,.16)`,
     `0 0 2px 0 rgba(0,0,0,.08),0 2px 8px 0 rgba(0,0,0,.16)`,

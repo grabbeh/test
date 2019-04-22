@@ -22,7 +22,7 @@ const LicenseBar = styled(Box)`
   ${props =>
     props.license === 'Public domain' &&
     css`
-      background: #fbf1a9;
+      background: #ff80cc;
     `};
   ${props =>
     props.license === 'BSD-2-Clause' &&

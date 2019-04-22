@@ -1,15 +1,11 @@
 import flattenDeep from 'lodash.flattendeep'
-// import groupBy from 'lodash.groupby'
 import semver from 'semver'
 import axios from 'axios'
-import { stringify } from 'flatted/esm'
 
 export async function handler (event, context) {
-  let url =
-    // 'https://raw.githubusercontent.com/request/request/master/package.json' ||
-    JSON.parse(event.body).url
   try {
-    const { data } = await axios(url)
+    let input = JSON.parse(event.body)
+    let data = await checkInput(input)
     let { dependencies } = data
 
     // scoped packages error
@@ -25,8 +21,18 @@ export async function handler (event, context) {
       body: JSON.stringify({ tree, combined, data })
     }
   } catch (err) {
-    console.log(err)
-    return { statusCode: 500, body: stringify({ data: err }) }
+    return { statusCode: 500, body: JSON.stringify({ data: err }) }
+  }
+}
+
+const checkInput = async input => {
+  if (input.url) {
+    let { data } = await axios(input.url)
+    return data
+  } else if (input.json) {
+    return JSON.parse(input.json)
+  } else {
+    return new Error('Neither URL or JSON')
   }
 }
 
