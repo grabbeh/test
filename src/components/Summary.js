@@ -3,6 +3,7 @@ import _ from 'lodash'
 import LicenseBar from './LicenseBar'
 import Flex from './Flex'
 import Box from './Box'
+import Text from './Text'
 
 const Summary = ({ dependencies }) => {
   const revised = _.sortBy(dependencies, 'license')
@@ -38,10 +39,14 @@ const Summary = ({ dependencies }) => {
       </Box>
       <Box my={3}>
         <Flex flexWrap='wrap'>
-          {updated.map(g => (
-            <Box>
-              <Box>{g.license}</Box>
-              <Box>{g.length}</Box>
+          {updated.map((g, i) => (
+            <Box key={i} mr={3}>
+              <Box>
+                <Text fontWeight='bold'>{g.license}</Text>
+              </Box>
+              <Box>
+                <Text>{g.length}</Text>
+              </Box>
             </Box>
           ))}
         </Flex>
