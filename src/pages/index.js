@@ -56,14 +56,14 @@ const Example = () => {
             <Tab>Upload</Tab>
           </TabList>
           <TabPanels>
-            <Box>
+            <Box width={[1, 800]}>
               <form
                 onSubmit={e => {
                   post(e, { url: url })
                 }}
               >
                 <Input
-                  width={[1, 800]}
+                  width={1}
                   type='text'
                   handleChange={URLChange}
                   name='url'
@@ -71,25 +71,29 @@ const Example = () => {
                   value={url}
                 />
                 <Box mt={3}>
-                  <Button type='submit' px={3} py={2}>
-                    <Text fontSize={3}>Submit</Text>
-                  </Button>
+                  <Flex justifyContent='flex-end'>
+                    <Button type='submit' px={3} py={2}>
+                      <Text fontSize={3}>Submit</Text>
+                    </Button>
+                  </Flex>
                 </Box>
               </form>
             </Box>
-            <Box>
+            <Box width={[1, 800]}>
               <form onSubmit={e => post(e, { json })}>
                 <TextArea
+                  width={1}
                   handleChange={JSONChange}
                   value={json}
                   height={400}
                   name='json'
-                  width={[1]}
                 />
                 <Box mt={3}>
-                  <Button type='submit' px={3} py={2}>
-                    <Text fontSize={3}>Submit</Text>
-                  </Button>
+                  <Flex justifyContent='flex-end'>
+                    <Button type='submit' px={3} py={2}>
+                      <Text fontSize={3}>Submit</Text>
+                    </Button>
+                  </Flex>
                 </Box>
               </form>
             </Box>
