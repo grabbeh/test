@@ -42,7 +42,7 @@ const Summary = ({ dependencies }) => {
           {updated.map((g, i) => (
             <Box key={i} mr={3}>
               <Box>
-                <Text fontWeight='bold'>{g.license}</Text>
+                <Text fontWeight='bold'>{g.license ? g.license : "Unknown" }</Text>
               </Box>
               <Box>
                 <Text>{g.length}</Text>
