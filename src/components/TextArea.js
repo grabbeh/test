@@ -19,6 +19,7 @@ import theme from './theme'
 
 const StyledTextArea = styled.textarea`
   outline: 0;
+  box-sizing: border-box;
   ${space}
   ${width}
   ${height}
