@@ -18,6 +18,7 @@ import theme from './theme'
 
 const StyledInput = styled.input`
   outline: 0;
+  box-sizing: border-box;
   ${space}
   ${width}
   ${borders}

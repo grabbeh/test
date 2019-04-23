@@ -26,6 +26,7 @@ import PropTypes from 'prop-types'
 import theme from './theme'
 
 const StyledBox = styled.div`
+  box-sizing: border-box;
   ${borders} ${space} ${size} ${maxWidth} ${minWidth} ${minHeight} ${width} ${height} ${fontWeight} ${fontSize} ${fontFamily} ${color} ${borderRadius} ${position} ${top} ${bottom} ${left} ${right} ${zIndex} ${borderColor};
 `
 
