@@ -19,6 +19,9 @@ const Tab = props => {
 
 const StyledTab = styled(Box)`
   cursor: pointer;
+  &:hover {
+    border-bottom: 3px #357edd solid;
+  }
   ${props =>
     props.isActive &&
     css`
