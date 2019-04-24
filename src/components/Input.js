@@ -87,7 +87,7 @@ Input.defaultProps = {
   borderLeft: '0',
   borderRight: '0',
   borderTop: '0',
-  borderBottom: '3px solid',
+  borderBottom: '2px solid',
   borderColor: 'blue',
   mt: 2,
   fontSize: 1

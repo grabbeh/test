@@ -5,8 +5,16 @@ import axios from 'axios'
 export async function handler (event, context) {
   try {
     let input = JSON.parse(event.body)
+
     let data = await checkInput(input)
     let { dependencies } = data
+    // No dependencies
+    if (!dependencies) {
+      return {
+        statusCode: 400,
+        body: 'This repository doesnt seem to have any dependencies'
+      }
+    }
 
     // scoped packages error
     // version not found error - just grab repository details and then get latest version?
@@ -21,11 +29,13 @@ export async function handler (event, context) {
       body: JSON.stringify({ tree, combined, data })
     }
   } catch (err) {
-    return { statusCode: 500, body: JSON.stringify({ data: err }) }
+    console.log(err)
+    return { statusCode: 500, body: JSON.stringify(err) }
   }
 }
 
 const checkInput = async input => {
+  // could include validation here
   if (input.url) {
     let { data } = await axios(input.url)
     return data

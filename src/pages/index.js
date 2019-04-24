@@ -21,6 +21,7 @@ const Example = () => {
   let [loading, setLoading] = useState(false)
   let [json, setJSON] = useState('')
   let [url, setURL] = useState('')
+  let [error, setError] = useState(null)
 
   const URLChange = e => {
     setURL(e.target.value)
@@ -36,11 +37,14 @@ const Example = () => {
     axios
       .post('/.netlify/functions/submit-license', input)
       .then(r => {
+        console.log(r)
         setLoading(false)
         setResponse(r.data)
       })
-      .catch(function (error) {
-        console.log(error)
+      .catch(err => {
+        setLoading(false)
+        console.log(err.response)
+        setError(err.response.data)
       })
     e.preventDefault()
   }
@@ -63,6 +67,7 @@ const Example = () => {
                 }}
               >
                 <Input
+                  error={error}
                   width={1}
                   type='text'
                   handleChange={URLChange}
