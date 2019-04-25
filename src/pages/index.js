@@ -142,7 +142,7 @@ const Example = () => {
               {response &&
                 response.tree.map((l, i) => {
                   return (
-                    <Box width={[1, 1 / 2, 1 / 4]} key={l.parent.name}>
+                    <Box width={[1, 1 / 2, 1 / 4, 1/ 6]} key={l.parent.name}>
                       <Dependency
                         number={i + 1}
                         parent={l.parent}
