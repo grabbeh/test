@@ -20,7 +20,9 @@ const Dependency = ({ parent, dependencies, number }) => {
         borderRadius={2}
         license={parent.license}
       >
+        <Text color='black'>
         <FiCornerDownRight />
+        </Text>
         <Text color='black' fontWeight='bold' fontSize={[2, 3]}>
           {number}. {parent.name}
         </Text>
