@@ -33,7 +33,10 @@ Button.defaultProps = {
   fontSize: 1,
   fontWeight: 'bold',
   color: 'white',
-  disabled: false
+  disabled: false,
+  bg: 't-light-blue',
+  color: 'white',
+  borderRadius: 3
 }
 
 const numberStringOrArray = PropTypes.oneOfType([
@@ -44,43 +47,24 @@ const numberStringOrArray = PropTypes.oneOfType([
 
 Button.propTypes = {
   fontSize: numberStringOrArray,
-  /** Font weight */
   fontWeight: PropTypes.string,
-  /** Text color */
   color: PropTypes.string,
-  /** Background color */
   bg: PropTypes.string,
-  /** Width */
   width: numberStringOrArray,
-  /** Margin */
   m: numberStringOrArray,
-  /** Top margin */
   mt: numberStringOrArray,
-  /** Right margin */
   mr: numberStringOrArray,
-  /** Bottom margin */
   mb: numberStringOrArray,
-  /** Left margin */
   ml: numberStringOrArray,
-  /** Horizontal margin */
   mx: numberStringOrArray,
-  /** Vertical margin */
   my: numberStringOrArray,
-  /** Padding */
   p: numberStringOrArray,
-  /** Top padding */
   pt: numberStringOrArray,
-  /** Right padding */
   pr: numberStringOrArray,
-  /** Bottom padding */
   pb: numberStringOrArray,
-  /** Left padding */
   pl: numberStringOrArray,
-  /** Horizontal padding */
   px: numberStringOrArray,
-  /** Vertical padding */
   py: numberStringOrArray,
-  /** Border radius */
   borderRadius: PropTypes.number
 }
 

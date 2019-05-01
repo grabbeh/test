@@ -20,12 +20,12 @@ const Tab = props => {
 const StyledTab = styled(Box)`
   cursor: pointer;
   &:hover {
-    border-bottom: 2px #357edd solid;
+    border-bottom: 1px #fff solid;
   }
   ${props =>
     props.isActive &&
     css`
-      border-bottom: 2px #357edd solid;
+      border-bottom: 1px #fff solid;
       font-weight: bold;
     `}
 `

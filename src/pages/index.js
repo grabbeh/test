@@ -55,9 +55,15 @@ const Example = () => {
       <Box>
         <Tabs>
           <TabList>
-            <Tab>URL</Tab>
-            <Tab>Paste</Tab>
-            <Tab>Upload</Tab>
+            <Tab>
+              <Text>URL</Text>
+            </Tab>
+            <Tab>
+              <Text>Paste</Text>
+            </Tab>
+            <Tab>
+              <Text>Upload</Text>
+            </Tab>
           </TabList>
           <TabPanels>
             <Box width={[1, 800]}>
@@ -67,6 +73,7 @@ const Example = () => {
                 }}
               >
                 <Input
+                  borderRadius={2}
                   error={error}
                   width={1}
                   type='text'
@@ -78,7 +85,7 @@ const Example = () => {
                 <Box mt={3}>
                   <Flex justifyContent='flex-end'>
                     <Button type='submit' px={3} py={2}>
-                      <Text fontSize={2}>SUBMIT</Text>
+                      <Text fontSize={2}>Submit</Text>
                     </Button>
                   </Flex>
                 </Box>

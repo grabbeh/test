@@ -34,6 +34,9 @@ const theme = {
     xLarge: `360ms`
   },
   colors: {
+    't-blue': '#2b7bb9',
+    't-light-blue': '#1da1f2',
+    't-text': '#71c9f8',
     'g-pink': '#F0DBBC',
     'g-red': '#FF6A56',
     petrol: '#31505F',

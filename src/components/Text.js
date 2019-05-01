@@ -48,6 +48,7 @@ Text.propTypes = {
 }
 
 Text.defaultProps = {
+  color: 't-text',
   theme: theme
 }
 

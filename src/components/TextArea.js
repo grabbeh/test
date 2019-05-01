@@ -11,6 +11,7 @@ import {
   borderLeft,
   borderTop,
   borderRight,
+  borderRadius,
   fontSize
 } from 'styled-system'
 import styled from 'styled-components'
@@ -19,6 +20,7 @@ import theme from './theme'
 
 const StyledTextArea = styled.textarea`
   outline: 0;
+  border: none;
   box-sizing: border-box;
   ${space}
   ${width}
@@ -29,6 +31,7 @@ const StyledTextArea = styled.textarea`
   ${borderLeft}
   ${borderRight}
   ${borderColor}
+  ${borderRadius}
   ${fontSize}
 `
 class TextArea extends React.Component {
@@ -55,7 +58,7 @@ class TextArea extends React.Component {
     } = this.props
 
     return (
-      <Box bg='white' p={0} fontSize={3}>
+      <Box borderRadius={2} bg='white' p={0} fontSize={3}>
         {label && (
           <Text>
             <label htmlFor={value}>{label}</label>
@@ -86,10 +89,8 @@ TextArea.defaultProps = {
   theme: theme,
   bg: 'white',
   p: 1,
-  border: '2px solid',
-  borderColor: 'blue',
-  mt: 2,
-  fontSize: 2
+  fontSize: 2,
+  borderRadius: 2
 }
 
 const numberStringOrArray = PropTypes.oneOfType([
