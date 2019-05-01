@@ -25,8 +25,6 @@ const Summary = ({ dependencies }) => {
         <Flex flexWrap='wrap'>
           {revised.map((d, i) => (
             <LicenseBar
-              border='2px solid'
-              borderRadius={2}
               mr={1}
               my={1}
               key={i}
