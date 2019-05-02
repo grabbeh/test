@@ -6,7 +6,7 @@ import Logo from './Logo'
 import { Link } from 'gatsby'
 
 const Header = () => (
-  <Box>
+  <Box pb={2} borderBottom='1px solid' borderColor='#fff'>
     <Flex justifyContent='flex-end'>
       <Box>
         <Link to='/about'>
@@ -18,7 +18,6 @@ const Header = () => (
       <Box mt={13} mr={2}>
         <Logo />
       </Box>
-
       <Text fontWeight='bold' fontSize={5}>
         License checker
       </Text>
