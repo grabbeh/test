@@ -27,12 +27,10 @@ Button.displayName = 'Box'
 
 Button.defaultProps = {
   theme: theme,
-  bg: 'green',
   px: 3,
   py: 2,
   fontSize: 1,
   fontWeight: 'bold',
-  color: 'white',
   disabled: false,
   bg: 't-light-blue',
   color: 'white',

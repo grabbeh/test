@@ -14,14 +14,14 @@ const Dependency = ({ parent, dependencies, number }) => {
         borderLeft='3px solid'
         borderColor='black'
         key={parent.name}
-        width={[0.6, 150]}
-        p={3}
-        mt={3}
+        p={2}
+        mr={3}
+        mb={3}
         borderRadius={2}
         license={parent.license}
       >
         <Text color='black'>
-        <FiCornerDownRight />
+          <FiCornerDownRight />
         </Text>
         <Text color='black' fontWeight='bold' fontSize={[2, 3]}>
           {number}. {parent.name}

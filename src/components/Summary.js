@@ -7,7 +7,6 @@ import Text from './Text'
 
 const Summary = ({ dependencies }) => {
   const revised = _.sortBy(dependencies, 'license')
-
   let group = _.values(_.groupBy(dependencies, 'license'))
   let updated = _.orderBy(
     group.map(i => {
@@ -25,8 +24,9 @@ const Summary = ({ dependencies }) => {
         <Flex flexWrap='wrap'>
           {revised.map((d, i) => (
             <LicenseBar
-              mr={1}
+              mr={2}
               my={1}
+              borderRadius={2}
               key={i}
               width={30}
               height={30}
@@ -40,7 +40,9 @@ const Summary = ({ dependencies }) => {
           {updated.map((g, i) => (
             <Box key={i} mr={3}>
               <Box>
-                <Text fontWeight='bold'>{g.license ? g.license : "Unknown" }</Text>
+                <Text fontWeight='bold'>
+                  {g.license ? g.license : 'Unknown'}
+                </Text>
               </Box>
               <Box>
                 <Text>{g.length}</Text>

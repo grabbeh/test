@@ -2,7 +2,7 @@ import React, { useState, Fragment } from 'react'
 import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
-import Input from '../components/Input'
+import UrlForm from '../components/UrlForm'
 import Button from '../components/Button'
 import axios from 'axios'
 import Flex from '../components/Flex'
@@ -20,12 +20,7 @@ const Example = () => {
   let [response, setResponse] = useState(null)
   let [loading, setLoading] = useState(false)
   let [json, setJSON] = useState('')
-  let [url, setURL] = useState('')
   let [error, setError] = useState(null)
-
-  const URLChange = e => {
-    setURL(e.target.value)
-  }
 
   const JSONChange = e => {
     setJSON(e.target.value)
@@ -37,13 +32,11 @@ const Example = () => {
     axios
       .post('/.netlify/functions/submit-license', input)
       .then(r => {
-        console.log(r)
         setLoading(false)
         setResponse(r.data)
       })
       .catch(err => {
         setLoading(false)
-        console.log(err.response)
         setError(err.response.data)
       })
     e.preventDefault()
@@ -67,29 +60,7 @@ const Example = () => {
           </TabList>
           <TabPanels>
             <Box width={[1, 0.7, 0.5]}>
-              <form
-                onSubmit={e => {
-                  post(e, { url: url })
-                }}
-              >
-                <Input
-                  borderRadius={2}
-                  error={error}
-                  width={1}
-                  type='text'
-                  handleChange={URLChange}
-                  name='url'
-                  fontSize={[2, 4]}
-                  value={url}
-                />
-                <Box mt={3}>
-                  <Flex justifyContent='flex-end'>
-                    <Button disabled={loading} type='submit' px={3} py={2}>
-                       { loading ? <Text fontSize={2}>Loading...</Text> : <Text color='white' fontSize={2}>Submit</Text>}
-                    </Button>
-                  </Flex>
-                </Box>
-              </form>
+              <UrlForm setResponse={setResponse} />
             </Box>
             <Box width={[1, 800]}>
               <form onSubmit={e => post(e, { json })}>
@@ -103,7 +74,13 @@ const Example = () => {
                 <Box mt={3}>
                   <Flex justifyContent='flex-end'>
                     <Button disabled={loading} type='submit' px={3} py={2}>
-                      { loading ? <Text fontSize={2}>Loading...</Text> : <Text color='white' fontSize={2}>Submit</Text>}
+                      {loading ? (
+                        <Text fontSize={2}>Loading...</Text>
+                      ) : (
+                        <Text color='white' fontSize={2}>
+                          Submit
+                        </Text>
+                      )}
                     </Button>
                   </Flex>
                 </Box>
@@ -145,11 +122,11 @@ const Example = () => {
             )}
           </Box>
           <Box>
-            <Flex justifyContent='space-between' flexWrap='wrap'>
+            <Flex flexWrap='wrap'>
               {response &&
                 response.tree.map((l, i) => {
                   return (
-                    <Box width={[1, 1 / 2, 1 / 4, 1/ 6]} key={l.parent.name}>
+                    <Box width={[1, 1 / 3, 1 / 5]} key={l.parent.name}>
                       <Dependency
                         number={i + 1}
                         parent={l.parent}
