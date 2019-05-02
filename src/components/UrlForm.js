@@ -24,7 +24,7 @@ const UrlForm = props => {
       onSubmit={(values, { setSubmitting, setErrors }) => {
         setErrors({
           url: false,
-          existingSubscription: false
+          serverError: false
         })
         let { url } = values
         axios
