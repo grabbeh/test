@@ -20,7 +20,7 @@ const Example = () => {
   let [response, setResponse] = useState(null)
   let [loading, setLoading] = useState(false)
   let [json, setJSON] = useState('')
-  let [error, setError] = useState(null)
+  // let [error, setError] = useState(null)
 
   const JSONChange = e => {
     setJSON(e.target.value)
@@ -37,7 +37,7 @@ const Example = () => {
       })
       .catch(err => {
         setLoading(false)
-        setError(err.response.data)
+        // setError(err.response.data)
       })
     e.preventDefault()
   }
