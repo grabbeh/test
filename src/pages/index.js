@@ -85,7 +85,7 @@ const Example = () => {
                 <Box mt={3}>
                   <Flex justifyContent='flex-end'>
                     <Button disabled={loading} type='submit' px={3} py={2}>
-                       { loading ? <Text fontSize={2}>Loading...</Text> : <Text fontSize={2}>Submit</Text>}
+                       { loading ? <Text fontSize={2}>Loading...</Text> : <Text color='white' fontSize={2}>Submit</Text>}
                     </Button>
                   </Flex>
                 </Box>
@@ -103,7 +103,7 @@ const Example = () => {
                 <Box mt={3}>
                   <Flex justifyContent='flex-end'>
                     <Button disabled={loading} type='submit' px={3} py={2}>
-                      { loading ? <Text fontSize={2}>Loading...</Text> : <Text fontSize={2}>Submit</Text>}
+                      { loading ? <Text fontSize={2}>Loading...</Text> : <Text color='white' fontSize={2}>Submit</Text>}
                     </Button>
                   </Flex>
                 </Box>
