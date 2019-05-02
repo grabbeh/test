@@ -6,11 +6,6 @@ import { Link } from 'gatsby'
 const InternalLink = styled(Link)`
   cursor: pointer;
   text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-
-  }
-
 `
 
 InternalLink.displayName = 'Link'
