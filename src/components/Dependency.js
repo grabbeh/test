@@ -14,7 +14,8 @@ const Dependency = ({ parent, dependencies, number }) => {
         borderLeft='3px solid'
         borderColor='black'
         key={parent.name}
-        width={[0.6, 200]}
+        width={[0.6, 150]}
+        height={200}
         p={3}
         mt={3}
         borderRadius={2}
