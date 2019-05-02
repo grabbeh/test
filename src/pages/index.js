@@ -102,8 +102,8 @@ const Example = () => {
                 />
                 <Box mt={3}>
                   <Flex justifyContent='flex-end'>
-                    <Button type='submit' px={3} py={2}>
-                      <Text fontSize={2}>SUBMIT</Text>
+                    <Button disabled={loading} type='submit' px={3} py={2}>
+                      { loading ? <Text fontSize={2}>Loading...</Text> : <Text fontSize={2}>Submit</Text>}
                     </Button>
                   </Flex>
                 </Box>
