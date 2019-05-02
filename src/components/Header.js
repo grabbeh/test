@@ -3,7 +3,7 @@ import Text from './Text'
 import Box from './Box'
 import Flex from './Flex'
 import Logo from './Logo'
-import { Link } from 'gatsby'
+import Link from './Link'
 
 const Header = () => (
   <Box pb={2} borderBottom='1px solid' borderColor='#fff'>
