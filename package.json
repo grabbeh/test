@@ -6,7 +6,6 @@
   "author": "Michael Goulbourn",
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
     "core-js": "^3.0.1",
     "es6-promise": "^4.2.6",
