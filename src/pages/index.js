@@ -62,7 +62,7 @@ const Example = () => {
             <Box width={[1, 0.7, 0.5]}>
               <UrlForm setResponse={setResponse} />
             </Box>
-            <Box width={[1, 800]}>
+            <Box width={[1, 0.7, 0.5]}>
               <form onSubmit={e => post(e, { json })}>
                 <TextArea
                   width={1}
