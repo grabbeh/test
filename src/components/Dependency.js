@@ -64,7 +64,7 @@ const Dependency = ({ parent, dependencies, number }) => {
 
 const HideStyled = styled.div`
   ${props =>
-    props.hide === 'ISC' &&
+    props.hide &&
     css`
       visibility: hidden;
     `};
