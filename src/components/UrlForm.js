@@ -59,7 +59,7 @@ const UrlForm = props => {
             <Box mt={2}>
               <Error>{errors.serverError}</Error>
             </Box>
-            <Box mt={2}>
+            <Box mt={3}>
               <Flex justifyContent='flex-end'>
                 <Button disabled={isSubmitting} type='submit' px={3} py={2}>
                   {isSubmitting ? (
