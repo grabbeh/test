@@ -45,8 +45,7 @@ const boxShadow = props => {
 
 const StyledBox = styled.div`
   box-sizing: border-box;
-  ${boxShadow}
-  ${borders} ${space} ${size} ${maxWidth} ${minWidth} ${minHeight} ${width} ${height} ${fontWeight} ${fontSize} ${fontFamily} ${color} ${borderRadius} ${position} ${top} ${bottom} ${left} ${right} ${zIndex} ${borderColor};
+  ${boxShadow} ${borders} ${space} ${size} ${maxWidth} ${minWidth} ${minHeight} ${width} ${height} ${fontWeight} ${fontSize} ${fontFamily} ${color} ${borderRadius} ${position} ${top} ${bottom} ${left} ${right} ${zIndex} ${borderColor};
 `
 
 // To recognise propTypes, we have to create new Box to wrap StyledBox
