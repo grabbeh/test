@@ -87,7 +87,8 @@ Input.defaultProps = {
   theme: theme,
   bg: 'white',
   p: 1,
-  fontSize: 1
+  width: 1,
+  borderRadius: 2
 }
 
 const numberStringOrArray = PropTypes.oneOfType([

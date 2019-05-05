@@ -47,12 +47,10 @@ const UrlForm = props => {
         return (
           <Form>
             <Input
-              borderRadius={2}
-              width={1}
               type='text'
               handleChange={handleChange}
               name='url'
-              fontSize={[2, 4]}
+              fontSize={[2, 3]}
               value={values.url}
             />
             <Box mt={2}>{touched.url && <Error>{errors.url}</Error>}</Box>
