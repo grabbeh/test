@@ -11,7 +11,7 @@ const Dependency = ({ parent, dependencies, number }) => {
     <Fragment>
       <LicenseBar
         borderColor='black'
-        borderLeft='2px solid'
+        borderLeft='4px solid'
         key={parent.name}
         p={2}
         pl={3}
