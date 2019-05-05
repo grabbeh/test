@@ -7,14 +7,14 @@ import styled, { css } from 'styled-components'
 
 const Dependency = ({ parent, dependencies, number }) => {
   let [hidden, setHidden] = useState(true)
-
   return (
     <Fragment>
       <LicenseBar
-        borderLeft='5px solid'
         borderColor='black'
+        borderLeft='2px solid'
         key={parent.name}
         p={2}
+        pl={3}
         mr={3}
         mb={3}
         borderRadius={2}
@@ -49,9 +49,9 @@ const Dependency = ({ parent, dependencies, number }) => {
               </Box>
             )}
             {dependencies.map((d, i) => (
-              <Fragment>
+              <Fragment key={i}>
                 <HideStyled hidden={hidden}>
-                  <Dependency number={i + 1} key={i} {...d} />
+                  <Dependency number={i + 1} {...d} />
                 </HideStyled>
               </Fragment>
             ))}

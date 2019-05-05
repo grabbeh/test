@@ -3,8 +3,6 @@ import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
 import UrlForm from '../components/UrlForm'
-import Button from '../components/Button'
-import axios from 'axios'
 import Flex from '../components/Flex'
 import Dependency from '../components/Dependency'
 import Summary from '../components/Summary'
@@ -14,34 +12,10 @@ import Tabs from '../components/Tabs'
 import Tab from '../components/Tab'
 import TabList from '../components/TabList'
 import TabPanels from '../components/TabPanels'
-import TextArea from '../components/TextArea'
+import JSONForm from '../components/JSONForm'
 
 const Example = () => {
   let [response, setResponse] = useState(null)
-  let [loading, setLoading] = useState(false)
-  let [json, setJSON] = useState('')
-  // let [error, setError] = useState(null)
-
-  const JSONChange = e => {
-    setJSON(e.target.value)
-  }
-
-  const post = (e, input) => {
-    setResponse(null)
-    setLoading(true)
-    axios
-      .post('/.netlify/functions/submit-license', input)
-      .then(r => {
-        setLoading(false)
-        setResponse(r.data)
-      })
-      .catch(err => {
-        setLoading(false)
-        // setError(err.response.data)
-      })
-    e.preventDefault()
-  }
-
   return (
     <Layout>
       <Header />
@@ -63,28 +37,7 @@ const Example = () => {
               <UrlForm setResponse={setResponse} />
             </Box>
             <Box width={[1, 0.7, 0.5]}>
-              <form onSubmit={e => post(e, { json })}>
-                <TextArea
-                  width={1}
-                  handleChange={JSONChange}
-                  value={json}
-                  height={400}
-                  name='json'
-                />
-                <Box mt={3}>
-                  <Flex justifyContent='flex-end'>
-                    <Button disabled={loading} type='submit' px={3} py={2}>
-                      {loading ? (
-                        <Text fontSize={2}>Loading...</Text>
-                      ) : (
-                        <Text color='white' fontSize={2}>
-                          Submit
-                        </Text>
-                      )}
-                    </Button>
-                  </Flex>
-                </Box>
-              </form>
+              <JSONForm setResponse={setResponse} />
             </Box>
             <Box>
               <Text>Coming soon</Text>
@@ -93,13 +46,6 @@ const Example = () => {
         </Tabs>
 
         <Box>
-          {loading && (
-            <Box py={3}>
-              <Text fontSize={3} fontWeight='bold'>
-                Loading
-              </Text>
-            </Box>
-          )}
           <Box>
             {response && (
               <Fragment>

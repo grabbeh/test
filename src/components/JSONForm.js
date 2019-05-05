@@ -1,34 +1,38 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
-import { string, object } from 'yup'
+import isJSON from 'validator/lib/isJSON'
 import Box from './Box'
 import Text from './Text'
 import Flex from './Flex'
 import Button from './Button'
-import Input from './Input'
 import axios from 'axios'
 import Error from './Error'
+import TextArea from './TextArea'
 
 const UrlForm = props => {
   return (
     <Formik
       initialValues={{
-        url: ''
+        json: ''
       }}
       validateOnChange={false}
-      validationSchema={object().shape({
-        url: string()
-          .url()
-          .required('Please provide a valid url')
-      })}
+      validate={values => {
+        let errors = {}
+        if (!values.json) {
+          errors.json = 'Please provide some JSON'
+        } else if (!isJSON(values.json)) {
+          errors.json = 'Invalid JSON'
+        }
+        return errors
+      }}
       onSubmit={(values, { setSubmitting, setErrors }) => {
         setErrors({
-          url: false,
+          json: false,
           serverError: false
         })
-        let { url } = values
+        let { json } = values
         axios
-          .post('/.netlify/functions/submit-license', { url })
+          .post('/.netlify/functions/submit-license', { json })
           .then(r => {
             setSubmitting(false)
             props.setResponse(r.data)
@@ -46,16 +50,14 @@ const UrlForm = props => {
         const { values, touched, errors, isSubmitting, handleChange } = props
         return (
           <Form>
-            <Input
-              borderRadius={2}
+            <TextArea
               width={1}
-              type='text'
               handleChange={handleChange}
-              name='url'
-              fontSize={[2, 4]}
-              value={values.url}
+              value={values.json}
+              height={400}
+              name='json'
             />
-            <Box mt={2}>{touched.url && <Error>{errors.url}</Error>}</Box>
+            <Box mt={2}>{touched.json && <Error>{errors.json}</Error>}</Box>
             <Box mt={2}>
               <Error>{errors.serverError}</Error>
             </Box>

@@ -25,8 +25,27 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import theme from './theme'
 
+const boxShadow = props => {
+  const boxShadows = {
+    sm: {
+      'box-shadow': props.theme.boxShadows[0]
+    },
+    md: {
+      'box-shadow': props.theme.boxShadows[1]
+    },
+    lg: {
+      'box-shadow': props.theme.boxShadows[2]
+    },
+    xl: {
+      'box-shadow': props.theme.boxShadows[3]
+    }
+  }
+  return boxShadows[props.boxShadowSize]
+}
+
 const StyledBox = styled.div`
   box-sizing: border-box;
+  ${boxShadow}
   ${borders} ${space} ${size} ${maxWidth} ${minWidth} ${minHeight} ${width} ${height} ${fontWeight} ${fontSize} ${fontFamily} ${color} ${borderRadius} ${position} ${top} ${bottom} ${left} ${right} ${zIndex} ${borderColor};
 `
 
