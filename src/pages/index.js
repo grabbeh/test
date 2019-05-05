@@ -3,8 +3,6 @@ import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
 import UrlForm from '../components/UrlForm'
-import Flex from '../components/Flex'
-import Dependency from '../components/Dependency'
 import Summary from '../components/Summary'
 import MainPackage from '../components/MainPackage'
 import Header from '../components/Header'
@@ -13,6 +11,8 @@ import Tab from '../components/Tab'
 import TabList from '../components/TabList'
 import TabPanels from '../components/TabPanels'
 import JSONForm from '../components/JSONForm'
+import Table from '../components/Table'
+import Tree from '../components/TreeStructure'
 
 const Example = () => {
   let [response, setResponse] = useState(null)
@@ -44,45 +44,48 @@ const Example = () => {
             </Box>
           </TabPanels>
         </Tabs>
-
         <Box>
-          <Box>
-            {response && (
-              <Fragment>
-                <Box py={3}>
-                  <Text fontSize={4} fontWeight='bold'>
-                    Results
-                  </Text>
-                </Box>
-                <MainPackage main={response.data} />
-                <Box mt={3}>
-                  <Text fontSize={3} fontWeight='bold'>
-                    Dependencies
-                  </Text>
-                  <Text fontSize={3}>{response.combined.length}</Text>
-                </Box>
+          {response && (
+            <Fragment>
+              <Box py={3}>
+                <Text fontSize={4} fontWeight='bold'>
+                  Results
+                </Text>
+              </Box>
+              <MainPackage main={response.data} />
+              <Box mt={3}>
+                <Text fontSize={3} fontWeight='bold'>
+                  Dependencies
+                </Text>
+                <Text fontSize={3}>{response.combined.length}</Text>
+              </Box>
+              <Box>
+                <Summary dependencies={response.combined} />
+              </Box>
+            </Fragment>
+          )}
+          {response && (
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <Text>Tree</Text>
+                </Tab>
+                <Tab>
+                  <Text>Table</Text>
+                </Tab>
+                <Tab>
+                  <Text>Attribution</Text>
+                </Tab>
+              </TabList>
+              <TabPanels>
+                <Tree tree={response.tree} />
+                <Table dataRows={response.combined} />
                 <Box>
-                  <Summary dependencies={response.combined} />
+                  <Text>Coming soon</Text>
                 </Box>
-              </Fragment>
-            )}
-          </Box>
-          <Box>
-            <Flex flexWrap='wrap'>
-              {response &&
-                response.tree.map((l, i) => {
-                  return (
-                    <Box width={[1, 1 / 3, 1 / 5]} key={l.parent.name}>
-                      <Dependency
-                        number={i + 1}
-                        parent={l.parent}
-                        dependencies={l.dependencies}
-                      />
-                    </Box>
-                  )
-                })}
-            </Flex>
-          </Box>
+              </TabPanels>
+            </Tabs>
+          )}
         </Box>
       </Box>
     </Layout>
