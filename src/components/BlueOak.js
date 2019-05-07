@@ -17,12 +17,12 @@ const BlueOak = styled(Box)`
   ${props =>
     props.rating === 'Silver' &&
     css`
-      background: #e8fdf5;
+      background: #9eebcf;
     `};
   ${props =>
     props.rating === 'Bronze' &&
     css`
-      background: #fbf1a9;
+      background: #ff6300;
     `};
   ${props =>
     props.rating === 'Lead' &&
