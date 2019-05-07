@@ -1,6 +1,7 @@
 import flattenDeep from 'lodash.flattendeep'
 import semver from 'semver'
 import axios from 'axios'
+import updateLicense from './convert'
 
 export async function handler (event, context) {
   try {
@@ -58,13 +59,6 @@ const process = arr => {
 
 const aggregate = arr => {
   return flattenDeep(process(arr))
-  /*
-  return groupBy(r, 'license').map(i => {
-    return {
-      license: i[0].license,
-      length: i.length
-    }
-  }) */
 }
 
 const getURLs = dependencies => {
@@ -89,11 +83,11 @@ const getTreeData = async dependencies => {
     let { dependencies } = data
     if (dependencies && Object.keys(dependencies).length > 0) {
       return {
-        parent: data,
+        parent: updateLicense(data),
         dependencies: await getTreeData(dependencies)
       }
     } else {
-      return { parent: data }
+      return { parent: updateLicense(data) }
     }
   })
   // https://stackoverflow.com/questions/30362733/handling-errors-in-promise-all

@@ -11,9 +11,7 @@ const Layout = props => {
         <meta name='viewport' content='width=device-width' />
         <title>License checker</title>
       </Helmet>
-      <Box minHeight='100vh' bg='t-blue' p={[2, 4]}>
-        {props.children}
-      </Box>
+      <Box>{props.children}</Box>
     </div>
   )
 }

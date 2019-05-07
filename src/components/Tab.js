@@ -5,7 +5,6 @@ import styled, { css } from 'styled-components'
 const Tab = props => {
   return (
     <StyledTab
-      mt={2}
       mb={3}
       mr={4}
       py={1}
@@ -20,12 +19,12 @@ const Tab = props => {
 const StyledTab = styled(Box)`
   cursor: pointer;
   &:hover {
-    border-bottom: 1px #fff solid;
+    border-bottom: 1px black solid;
   }
   ${props =>
     props.isActive &&
     css`
-      border-bottom: 1px #fff solid;
+      border-bottom: 1px black solid;
       font-weight: bold;
     `}
 `

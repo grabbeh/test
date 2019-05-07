@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Michael Goulbourn",
   "dependencies": {
+    "@blueoak/list": "^1.0.2",
     "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",

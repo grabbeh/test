@@ -5,15 +5,19 @@ import Text from './Text'
 
 const FullTable = props => {
   let { dataRows } = props
-  let picked = dataRows.map(r => {
+  let rows = dataRows.map(d => {
+    if (!d.license) d.license = 'Unknown'
+    return d
+  })
+  let picked = rows.map(r => {
     return _.pick(r, ['name', 'license'])
   })
   let dataColumns = _.keys(picked[0])
   const tableHeaders = (
     <thead>
       <Tr>
-        {dataColumns.map(column => (
-          <Td>
+        {dataColumns.map((column, i) => (
+          <Td key={i}>
             <Text fontWeight='bold' color='black'>
               {column}
             </Text>
@@ -25,9 +29,9 @@ const FullTable = props => {
 
   const tableBody = picked.map(row => (
     <Tr>
-      {dataColumns.map(function (column) {
+      {dataColumns.map((column, i) => {
         return (
-          <Td>
+          <Td key={i}>
             <Text color='black'>{row[column]}</Text>
           </Td>
         )

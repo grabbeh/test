@@ -13,47 +13,50 @@ import TabPanels from '../components/TabPanels'
 import JSONForm from '../components/JSONForm'
 import Table from '../components/Table'
 import Tree from '../components/TreeStructure'
+import Flex from '../components/Flex'
 
 const Example = () => {
   let [response, setResponse] = useState(null)
   return (
     <Layout>
-      <Header />
-      <Box>
-        <Tabs>
-          <TabList>
-            <Tab>
-              <Text>URL</Text>
-            </Tab>
-            <Tab>
-              <Text>Paste</Text>
-            </Tab>
-            <Tab>
-              <Text>Upload</Text>
-            </Tab>
-          </TabList>
-          <TabPanels>
-            <Box width={[1, 0.7, 0.5]}>
-              <UrlForm setResponse={setResponse} />
-            </Box>
-            <Box width={[1, 0.7, 0.5]}>
-              <JSONForm setResponse={setResponse} />
-            </Box>
-            <Box>
-              <Text>Coming soon</Text>
-            </Box>
-          </TabPanels>
-        </Tabs>
-        <Box>
+      <Flex flexWrap='wrap'>
+        <Box p={[2, 3]} minHeight='100vh' bg='papayawhip' width={[1, 0.3]}>
+          <Header />
+          <Box>
+            <Tabs>
+              <TabList>
+                <Tab>
+                  <Text>URL</Text>
+                </Tab>
+                <Tab>
+                  <Text>Paste</Text>
+                </Tab>
+                <Tab>
+                  <Text>Upload</Text>
+                </Tab>
+              </TabList>
+              <TabPanels>
+                <Box>
+                  <UrlForm setResponse={setResponse} />
+                </Box>
+                <Box>
+                  <JSONForm setResponse={setResponse} />
+                </Box>
+                <Box>
+                  <Text>Coming soon</Text>
+                </Box>
+              </TabPanels>
+            </Tabs>
+          </Box>
           {response && (
             <Fragment>
-              <Box py={3}>
+              <Box py={2}>
                 <Text fontSize={4} fontWeight='bold'>
                   Results
                 </Text>
               </Box>
               <MainPackage main={response.data} />
-              <Box mt={3}>
+              <Box mt={2}>
                 <Text fontSize={3} fontWeight='bold'>
                   Dependencies
                 </Text>
@@ -64,30 +67,32 @@ const Example = () => {
               </Box>
             </Fragment>
           )}
+        </Box>
+        <Box top={0} right={0} p={[2, 3]} width={[1, 0.7]}>
           {response && (
             <Tabs>
               <TabList>
                 <Tab>
-                  <Text>Tree</Text>
+                  <Text color='black'>Tree</Text>
                 </Tab>
                 <Tab>
-                  <Text>Table</Text>
+                  <Text color='black'>Table</Text>
                 </Tab>
                 <Tab>
-                  <Text>Attribution</Text>
+                  <Text color='black'>Attribution</Text>
                 </Tab>
               </TabList>
               <TabPanels>
                 <Tree tree={response.tree} />
                 <Table dataRows={response.combined} />
                 <Box>
-                  <Text>Coming soon</Text>
+                  <Text color='black'>Coming soon</Text>
                 </Box>
               </TabPanels>
             </Tabs>
           )}
         </Box>
-      </Box>
+      </Flex>
     </Layout>
   )
 }

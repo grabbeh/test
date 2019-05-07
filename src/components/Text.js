@@ -23,8 +23,11 @@ export const caps = props =>
     }
     : null
 
+export const pointer = props => (props.pointer ? { cursor: 'pointer' } : null)
+
 const Text = styled.div`
-  ${space} ${fontSize} ${fontWeight} ${color} ${textAlign} ${lineHeight} ${caps} ${regular} ${bold};
+  word-wrap: break-word;
+  ${space} ${fontSize} ${fontWeight} ${color} ${textAlign} ${lineHeight} ${pointer} ${caps} ${regular} ${bold};
 `
 
 Text.displayName = 'Text'
@@ -48,7 +51,7 @@ Text.propTypes = {
 }
 
 Text.defaultProps = {
-  color: 't-text',
+  color: 'black',
   theme: theme
 }
 

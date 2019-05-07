@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components'
 import Box from './Box'
 
 const LicenseBar = styled(Box)`
-  background: red;
   ${props =>
     props.license === 'MIT' &&
     css`
@@ -39,10 +38,11 @@ const LicenseBar = styled(Box)`
     css`
       background: #96ccff;
     `};
+
   ${props =>
     props.license === undefined &&
     css`
-      background: #a463f2;
+      background: #ffffff;
     `};
 `
 

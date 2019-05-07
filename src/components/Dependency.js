@@ -1,15 +1,15 @@
 import React, { Fragment, useState } from 'react'
 import Text from './Text'
 import Box from './Box'
-import { FiCornerDownRight, FiChevronDown, FiChevronUp } from 'react-icons/fi'
-import LicenseBar from './LicenseBar'
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
+import BlueOak from './BlueOak'
 import styled, { css } from 'styled-components'
 
 const Dependency = ({ parent, dependencies, number }) => {
   let [hidden, setHidden] = useState(true)
   return (
     <Fragment>
-      <LicenseBar
+      <BlueOak
         key={parent.name}
         p={2}
         pl={3}
@@ -18,10 +18,9 @@ const Dependency = ({ parent, dependencies, number }) => {
         borderRadius={2}
         license={parent.license}
         boxShadowSize='sm'
+        position='relative'
+        rating={parent.color}
       >
-        <Text color='black'>
-          <FiCornerDownRight />
-        </Text>
         <Text color='black' fontWeight='bold' fontSize={[2, 3]}>
           {number}. {parent.name}
         </Text>
@@ -37,11 +36,11 @@ const Dependency = ({ parent, dependencies, number }) => {
                 }}
               >
                 {hidden ? (
-                  <Text color='black' p={0} fontWeight='bold' fontSize={4}>
+                  <Text.s pointer fontWeight='bold' fontSize={4}>
                     <FiChevronUp />
-                  </Text>
+                  </Text.s>
                 ) : (
-                  <Text color='black' p={0} fontWeight='bold' fontSize={4}>
+                  <Text pointer fontWeight='bold' fontSize={4}>
                     <FiChevronDown />
                   </Text>
                 )}
@@ -56,7 +55,7 @@ const Dependency = ({ parent, dependencies, number }) => {
             ))}
           </Text>
         )}
-      </LicenseBar>
+      </BlueOak>
     </Fragment>
   )
 }
