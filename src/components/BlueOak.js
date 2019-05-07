@@ -2,32 +2,32 @@ import styled, { css } from 'styled-components'
 import Box from './Box'
 
 const BlueOak = styled(Box)`
-  background: red;
+  background: #ff4136;
   ${props =>
     props.rating === 'Model' &&
     css`
-      background: #ffffff;
+      background: #137752;
     `};
 
   ${props =>
     props.rating === 'Gold' &&
     css`
-      background: #ffd700;
+      background: #19a974;
     `};
   ${props =>
     props.rating === 'Silver' &&
     css`
-      background: #c0c0c0;
+      background: #e8fdf5;
     `};
   ${props =>
     props.rating === 'Bronze' &&
     css`
-      background: #cd7f32;
+      background: #fbf1a9;
     `};
   ${props =>
     props.rating === 'Lead' &&
     css`
-      background: #808080;
+      background: #ff725c;
     `};
 `
 
