@@ -52,6 +52,7 @@ const UrlForm = props => {
               name='url'
               fontSize={[2, 3]}
               value={values.url}
+              placeholder='Please enter package.json URL'
             />
             <Box mt={2}>{touched.url && <Error>{errors.url}</Error>}</Box>
             <Box mt={2}>
