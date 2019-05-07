@@ -21,12 +21,11 @@ const Dependency = ({ parent, dependencies, number }) => {
         position='relative'
         rating={parent.color}
       >
-        <Text color='black' fontWeight='bold' fontSize={[2, 3]}>
+        <Text fontWeight='bold' fontSize={[2, 3]}>
           {number}. {parent.name}
         </Text>
-        <Text color='black' fontSize={2}>
-          {parent.license ? parent.license : 'Unknown'}
-        </Text>
+        <Text fontSize={2}>{parent.license ? parent.license : 'Unknown'}</Text>
+        <Text fontSize={1}>{parent.author && parent.author.name}</Text>
         {dependencies && (
           <Text>
             {dependencies && (

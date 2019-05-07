@@ -1,8 +1,6 @@
 import _ from 'lodash'
 import blueoak from '@blueoak/list'
 
-console.log(blueoak)
-
 const convert = o => {
   return o.map(r => {
     return {
