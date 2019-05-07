@@ -20,7 +20,7 @@ const Example = () => {
   return (
     <Layout>
       <Flex flexWrap='wrap'>
-        <Box p={[2, 3]} minHeight='100vh' bg='papayawhip' width={[1, 0.3]}>
+        <Box p={[2, 3]} minHeight='100vh' width={[1, 0.3]}>
           <Header />
           <Box>
             <Tabs>
