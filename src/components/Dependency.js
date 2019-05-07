@@ -25,7 +25,9 @@ const Dependency = ({ parent, dependencies, number }) => {
           {number}. {parent.name}
         </Text>
         <Text fontSize={2}>{parent.license ? parent.license : 'Unknown'}</Text>
-        <Text fontSize={1}>{parent.author && parent.author.name}</Text>
+        <Text fontSize={1}>
+          {parent.author ? parent.author.name : 'Unknown'}
+        </Text>
         {dependencies && (
           <Text>
             {dependencies && (

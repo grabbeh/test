@@ -56,7 +56,7 @@ const Example = () => {
                 </Text>
               </Box>
               <MainPackage main={response.data} />
-              <Box mt={2}>
+              <Box>
                 <Text fontSize={3} fontWeight='bold'>
                   Dependencies
                 </Text>
