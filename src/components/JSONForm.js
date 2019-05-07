@@ -56,7 +56,6 @@ const UrlForm = props => {
               value={values.json}
               height={400}
               name='json'
-              placeholder='Please paste in a package.json file'
             />
             <Box mt={2}>{touched.json && <Error>{errors.json}</Error>}</Box>
             <Box mt={2}>
