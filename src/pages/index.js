@@ -50,7 +50,7 @@ const Example = () => {
             </Tabs>
           </Box>
           {loading && (
-            <Flex flexWrap='wrap' justifyContent='center' alignContent='center'>
+            <Flex height={1} flexWrap='wrap' justifyContent='center' alignContent='center'>
               <Box>Loading</Box>
             </Flex>
           )}
@@ -76,7 +76,7 @@ const Example = () => {
         </Box>
         <Box top={0} right={0} p={[2, 3]} width={[1, 0.7]}>
           {loading && (
-            <Flex flexWrap='wrap' justifyContent='center' alignContent='center'>
+            <Flex height={1} flexWrap='wrap' justifyContent='center' alignContent='center'>
               <Box>Loading</Box>
             </Flex>
           )}
