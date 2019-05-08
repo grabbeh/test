@@ -67,7 +67,7 @@ const UrlForm = props => {
                   {isSubmitting ? (
                     <Text color='gray' fontSize={2}>Loading...</Text>
                   ) : (
-                    <Text fontSize={2}>
+                    <Text color='white' fontSize={2}>
                       Submit
                     </Text>
                   )}
