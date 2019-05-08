@@ -33,12 +33,14 @@ const UrlForm = props => {
           .post('/.netlify/functions/submit-license', { url })
           .then(r => {
             props.setResponse(r.data)
+          setSubmitting(false)
             setLoading(false)
           })
           .catch(err => {
             setErrors({
               serverError: err.response.data
             })
+          setSubmitting(false)
             setLoading(false)
           })
       }}
