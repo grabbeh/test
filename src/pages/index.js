@@ -17,6 +17,7 @@ import Flex from '../components/Flex'
 
 const Example = () => {
   let [response, setResponse] = useState(null)
+  let [loading, setLoading] = useState(null)
   return (
     <Layout>
       <Flex flexWrap='wrap'>
@@ -37,10 +38,10 @@ const Example = () => {
               </TabList>
               <TabPanels>
                 <Box>
-                  <UrlForm setResponse={setResponse} />
+                  <UrlForm setLoading={setLoading} setResponse={setResponse} />
                 </Box>
                 <Box>
-                  <JSONForm setResponse={setResponse} />
+                  <JSONForm setLoading={setLoading} setResponse={setResponse} />
                 </Box>
                 <Box>
                   <Text>Coming soon</Text>
@@ -48,6 +49,11 @@ const Example = () => {
               </TabPanels>
             </Tabs>
           </Box>
+          {loading && (
+            <Flex justifyContent='center' alignItems='center'>
+              <Box>Loading</Box>
+            </Flex>
+          )}
           {response && (
             <Fragment>
               <Box py={2}>
@@ -69,6 +75,11 @@ const Example = () => {
           )}
         </Box>
         <Box top={0} right={0} p={[2, 3]} width={[1, 0.7]}>
+          {loading && (
+            <Flex justifyContent='center' alignItems='center'>
+              <Box>Loading</Box>
+            </Flex>
+          )}
           {response && (
             <Tabs>
               <TabList>

@@ -10,6 +10,7 @@ import axios from 'axios'
 import Error from './Error'
 
 const UrlForm = props => {
+  let { setLoading } = props
   return (
     <Formik
       initialValues={{
@@ -22,6 +23,7 @@ const UrlForm = props => {
           .required('Please provide a valid url')
       })}
       onSubmit={(values, { setSubmitting, setErrors }) => {
+        setLoading(true)
         setErrors({
           url: false,
           serverError: false
@@ -30,15 +32,14 @@ const UrlForm = props => {
         axios
           .post('/.netlify/functions/submit-license', { url })
           .then(r => {
-            setSubmitting(false)
             props.setResponse(r.data)
+            setLoading(false)
           })
           .catch(err => {
-            setSubmitting(false)
-            setSubmitting(false)
             setErrors({
               serverError: err.response.data
             })
+            setLoading(false)
           })
       }}
     >
@@ -50,7 +51,7 @@ const UrlForm = props => {
               type='text'
               handleChange={handleChange}
               name='url'
-              fontSize={[2, 3]}
+              fontSize={2}
               value={values.url}
               placeholder='Please input a package.json URL'
             />
@@ -64,7 +65,7 @@ const UrlForm = props => {
                   {isSubmitting ? (
                     <Text fontSize={2}>Loading...</Text>
                   ) : (
-                    <Text color='white' fontSize={2}>
+                    <Text color='t-light-blue' fontSize={2}>
                       Submit
                     </Text>
                   )}
