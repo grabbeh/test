@@ -29,7 +29,7 @@ const Dependency = ({ parent, dependencies, number }) => {
            <Text fontSize={2}>
              {l.license ? l.license : 'Unknown'}      
            </Text>
-           )}
+           ))}
           <Text fontSize={1}>
             {parent.author ? parent.author.name : 'Unknown'}
           </Text>
