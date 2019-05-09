@@ -9,7 +9,8 @@ const Dependency = ({ parent, dependencies, number }) => {
   let [hidden, setHidden] = useState(true)
   return (
     <Fragment>
-      {parent.licenses.map(c => (
+      {parent.licenses.length < 2 && 
+       parent.licenses.map(c => (
         <BlueOak
           key={parent.name}
           p={2}
