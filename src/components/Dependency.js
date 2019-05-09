@@ -9,7 +9,6 @@ const Dependency = ({ parent, dependencies, number }) => {
   let [hidden, setHidden] = useState(true)
   return (
     <Fragment>
-      {parent.licenses.map(c => (
         <BlueOak
           key={parent.name}
           p={2}
@@ -20,7 +19,7 @@ const Dependency = ({ parent, dependencies, number }) => {
           license={c.license}
           boxShadowSize='sm'
           position='relative'
-          rating={c.color}
+          rating={parent.licenses[0].color}
         >
           <Text fontWeight='bold' fontSize={[2, 3]}>
             {number}. {parent.name}
@@ -64,7 +63,7 @@ const Dependency = ({ parent, dependencies, number }) => {
             </Text>
           )}
         </BlueOak>
-      ))}
+
     </Fragment>
   )
 }
