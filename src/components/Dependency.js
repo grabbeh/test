@@ -26,7 +26,7 @@ const Dependency = ({ parent, dependencies, number }) => {
             {number}. {parent.name}
           </Text>
            {parent.licenses.map(l => (
-           <BlueOak p={1} color={l.color}>
+           <BlueOak p={1} rating={l.color}>
              <Text fontSize={2}>
                {l.license ? l.license : 'Unknown'}      
              </Text>
