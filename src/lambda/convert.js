@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import blueoak from '@blueoak/list'
 
+// convert BO license data into more accessible format
 const convert = o => {
   return o.map(r => {
     return {
@@ -27,13 +28,19 @@ const getColor = (license, info) => {
 }
 
 const updateLicenseInfo = o => {
+  let { license, licenses } = o
   // if just one license, things are simple, just return object with license/color
-  if (o.license) {
-    return [{ license: o.license, color: getColor(o.license, revised) }]
+  if (license && typeof license !== 'object') {
+    return [{ license: license, color: getColor(license, revised) }]
+    // sometimes license can be object with license.type notation
+  }
+  if (license && typeof license === 'object') {
+    console.log('License object!!')
+    return [{ license: license.type, color: getColor(license.type, revised) }]
   }
   // if multiple licenses, map over each to return type
-  else if (o.licenses) {
-    let extracted = o.licenses.map(l => {
+  if (licenses) {
+    let extracted = licenses.map(l => {
       return l.type
     })
     return extracted.map(l => {
@@ -42,14 +49,12 @@ const updateLicenseInfo = o => {
         color: getColor(l, revised)
       }
     })
-  } else {
-    return [{ license: null, color: null }]
   }
+  return [{ license: null, color: null }]
 }
 
 const updateLicense = o => {
   let licenses = updateLicenseInfo(o)
-  console.log(licenses)
   return {
     ...o,
     licenses

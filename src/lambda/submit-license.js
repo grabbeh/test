@@ -103,11 +103,10 @@ const getTreeData = async dependencies => {
   let results = await Promise.all(
     promises.map(p =>
       p.catch(e => {
-        console.log(e)
         return e
       })
     )
   )
-  // const valid = results.filter(result => !(result instanceof Error))
-  return results
+  const valid = results.filter(result => !(result instanceof Error))
+  return valid
 }

@@ -18,7 +18,6 @@ import Spinner from 'react-svg-spinner'
 
 const Example = () => {
   let [response, setResponse] = useState(null)
-  console.log(response)
   let [loading, setLoading] = useState(null)
   return (
     <Layout>
