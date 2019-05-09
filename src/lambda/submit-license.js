@@ -1,19 +1,21 @@
-import flattenDeep from 'lodash.flattendeep'
+import _ from 'lodash'
+
 import semver from 'semver'
 import axios from 'axios'
 import updateLicense from './convert'
+// import test from './test.json'
 
 export async function handler (event, context) {
   try {
     let input = JSON.parse(event.body)
-
     let data = await checkInput(input)
     let { dependencies } = data
+
     // No dependencies
     if (!dependencies) {
       return {
         statusCode: 400,
-        body: 'This repository doesnt seem to have any dependencies'
+        body: "I can't seem to find any dependencies"
       }
     }
 
@@ -23,6 +25,7 @@ export async function handler (event, context) {
     // ideally need to fetch details for main package - although in reality that may not
     // be on npm anyway - can just obtain license from package.json file :D
     // let primary = await axios(getNpmURL(name, version))
+
     let tree = await getTreeData(dependencies)
     let combined = aggregate(tree)
     return {
@@ -58,7 +61,7 @@ const process = arr => {
 }
 
 const aggregate = arr => {
-  return flattenDeep(process(arr))
+  return _.flattenDeep(process(arr))
 }
 
 const getURLs = dependencies => {
@@ -73,11 +76,17 @@ const getNpmURL = (name, version) => {
   if (clean !== null) return `https://registry.npmjs.org/${name}/${clean}`
 }
 
+const filterDependencies = dependencies => {
+  return _.omitBy(dependencies, (value, key) => {
+    return key.startsWith('@')
+  })
+}
+
 const getTreeData = async dependencies => {
-  let urls = getURLs(dependencies).filter(f => {
+  let filtered = filterDependencies(dependencies)
+  let urls = getURLs(filtered).filter(f => {
     return f !== undefined
   })
-
   let promises = urls.map(async url => {
     let { data } = await axios(url)
     let { dependencies } = data

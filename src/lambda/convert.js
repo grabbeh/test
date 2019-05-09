@@ -26,10 +26,33 @@ const getColor = (license, info) => {
   return color
 }
 
+const updateLicenseInfo = o => {
+  // if just one license, things are simple, just return object with license/color
+  if (o.license) {
+    return [{ license: o.license, color: getColor(o.license, revised) }]
+  }
+  // if multiple licenses, map over each to return type
+  else if (o.licenses) {
+    let extracted = o.licenses.map(l => {
+      return l.type
+    })
+    extracted.map(l => {
+      return {
+        license: l,
+        color: getColor(l, revised)
+      }
+    })
+  } else {
+    return [{ license: null, color: null }]
+  }
+}
+
 const updateLicense = o => {
+  let licenses = updateLicenseInfo(o)
+  console.log(licenses)
   return {
     ...o,
-    color: getColor(o.license, revised)
+    licenses
   }
 }
 

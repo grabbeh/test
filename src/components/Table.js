@@ -9,6 +9,7 @@ const FullTable = props => {
     if (!d.license) d.license = 'Unknown'
     return d
   })
+  // update to get licenses info
   let picked = rows.map(r => {
     return _.pick(r, ['name', 'license'])
   })

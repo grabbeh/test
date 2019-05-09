@@ -14,14 +14,16 @@ import JSONForm from '../components/JSONForm'
 import Table from '../components/Table'
 import Tree from '../components/TreeStructure'
 import Flex from '../components/Flex'
+import Spinner from 'react-svg-spinner'
 
 const Example = () => {
   let [response, setResponse] = useState(null)
+  console.log(response)
   let [loading, setLoading] = useState(null)
   return (
     <Layout>
       <Flex flexWrap='wrap'>
-        <Box p={[2, 3]} minHeight='100vh' width={[1, 0.3]}>
+        <Box bg='light-gray' p={[2, 3]} minHeight='100vh' width={[1, 0.3]}>
           <Header />
           <Box>
             <Tabs>
@@ -49,11 +51,6 @@ const Example = () => {
               </TabPanels>
             </Tabs>
           </Box>
-          {loading && (
-            <Flex height={500} flexWrap='wrap' justifyContent='center' alignContent='center'>
-              <Box>Loading</Box>
-            </Flex>
-          )}
           {response && (
             <Fragment>
               <Box py={2}>
@@ -74,10 +71,15 @@ const Example = () => {
             </Fragment>
           )}
         </Box>
-        <Box top={0} right={0} p={[2, 3]} width={[1, 0.7]}>
+        <Box p={[2, 3]} width={[1, 0.7]}>
           {loading && (
-            <Flex height='100%' flexWrap='wrap' justifyContent='center' alignContent='center'>
-              <Box>Loading</Box>
+            <Flex
+              height='100%'
+              alignItems='center'
+              flexWrap='wrap'
+              justifyContent='center'
+            >
+              <Spinner size='64px' speed='slow' thickness={3} color='#1da1f2' />
             </Flex>
           )}
           {response && (

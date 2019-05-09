@@ -8,9 +8,10 @@ import Button from './Button'
 import Input from './Input'
 import axios from 'axios'
 import Error from './Error'
+import Spinner from 'react-svg-spinner'
 
 const UrlForm = props => {
-  let { setLoading } = props
+  let { setLoading, setResponse } = props
   return (
     <Formik
       initialValues={{
@@ -24,6 +25,7 @@ const UrlForm = props => {
       })}
       onSubmit={(values, { setSubmitting, setErrors }) => {
         setLoading(true)
+        setResponse(null)
         setErrors({
           url: false,
           serverError: false
@@ -32,15 +34,15 @@ const UrlForm = props => {
         axios
           .post('/.netlify/functions/submit-license', { url })
           .then(r => {
-            props.setResponse(r.data)
-          setSubmitting(false)
+            setResponse(r.data)
+            setSubmitting(false)
             setLoading(false)
           })
           .catch(err => {
             setErrors({
               serverError: err.response.data
             })
-          setSubmitting(false)
+            setSubmitting(false)
             setLoading(false)
           })
       }}
@@ -65,7 +67,9 @@ const UrlForm = props => {
               <Flex justifyContent='flex-end'>
                 <Button disabled={isSubmitting} type='submit' px={3} py={2}>
                   {isSubmitting ? (
-                    <Text color='gray' fontSize={2}>Loading...</Text>
+                    <Text color='gray' fontSize={2}>
+                      <Spinner thickness={5} color='white' />
+                    </Text>
                   ) : (
                     <Text color='white' fontSize={2}>
                       Submit

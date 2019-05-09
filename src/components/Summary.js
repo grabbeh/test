@@ -6,13 +6,19 @@ import Text from './Text'
 import BlueOak from './BlueOak'
 
 const Summary = ({ dependencies }) => {
+  // need to factor in licenses info and colors info
   let group = _.values(_.groupBy(dependencies, 'license'))
+  // No color any more :<
   let bars = _.values(_.groupBy(dependencies, 'color'))
+
+  let colors = dependencies.licenses.map(l => {
+    return l.color
+  })
 
   bars.sort((a, b) => {
     return b.length - a.length
   })
-  let u = _.flatten(bars)
+  let u = _.flatten(colors)
   let updated = _.orderBy(
     group.map(i => {
       return {
@@ -27,37 +33,43 @@ const Summary = ({ dependencies }) => {
     <Box>
       <Box>
         <Flex flexWrap='wrap'>
-          {u.map((d, i) => (
-            <BlueOak
-              mr={2}
-              my={1}
-              borderRadius={2}
-              key={i}
-              width={30}
-              height={30}
-              rating={d.color}
-            />
-          ))}
+          {u.map((d, i) =>
+            d.licenses.map(c => (
+              <BlueOak
+                mr={2}
+                my={1}
+                borderRadius={2}
+                key={i}
+                width={30}
+                height={30}
+                rating={c.color}
+              />
+            ))
+          )}
         </Flex>
       </Box>
       <Box my={3}>
-        <Flex flexWrap='wrap'>
-          {updated.map((g, i) => (
-            <Box key={i} mr={3}>
-              <Box>
-                <Text fontWeight='bold'>
-                  {g.license ? g.license : 'Unknown'}
-                </Text>
-              </Box>
-              <Box>
-                <Text>{g.length}</Text>
-              </Box>
-            </Box>
-          ))}
-        </Flex>
+        <Flex flexWrap='wrap' />
       </Box>
     </Box>
   )
 }
 
 export default Summary
+
+const licenseSummary = props => {
+  return (
+    <div>
+      {props.updated.map((g, i) => (
+        <Box key={i} mr={3}>
+          <Box>
+            <Text fontWeight='bold'>{g.license ? g.license : 'Unknown'}</Text>
+          </Box>
+          <Box>
+            <Text>{g.length}</Text>
+          </Box>
+        </Box>
+      ))}
+    </div>
+  )
+}

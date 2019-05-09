@@ -18,7 +18,7 @@ import PropTypes from 'prop-types'
 import theme from './theme'
 
 const StyledInput = styled.input`
-  outline: 0;
+  
   border: none;
   box-sizing: border-box;
   ${space}
@@ -31,6 +31,7 @@ const StyledInput = styled.input`
   ${borderRadius}
   ${borderColor}
   ${fontSize}
+
 `
 class Input extends React.Component {
   constructor (props) {
