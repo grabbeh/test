@@ -36,7 +36,7 @@ const updateLicenseInfo = o => {
     let extracted = o.licenses.map(l => {
       return l.type
     })
-    extracted.map(l => {
+    return extracted.map(l => {
       return {
         license: l,
         color: getColor(l, revised)
