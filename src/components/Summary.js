@@ -11,9 +11,12 @@ const Summary = ({ dependencies }) => {
   // No color any more :<
   let bars = _.values(_.groupBy(dependencies, 'color'))
 
-  let colors = dependencies.licenses.map(l => {
-    return l.color
+  let colors = dependencies.map(d => {
+    return d.licenses.map(l => {
+      return l.color
+    })
   })
+  console.log(colors)
 
   bars.sort((a, b) => {
     return b.length - a.length
