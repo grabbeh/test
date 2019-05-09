@@ -16,7 +16,6 @@ const Dependency = ({ parent, dependencies, number }) => {
           mr={3}
           mb={3}
           borderRadius={2}
-          license={c.license}
           boxShadowSize='sm'
           position='relative'
           rating={parent.licenses[0].color}
