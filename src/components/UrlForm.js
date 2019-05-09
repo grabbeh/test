@@ -39,8 +39,10 @@ const UrlForm = props => {
             setLoading(false)
           })
           .catch(err => {
+            console.log(err)
             setErrors({
-              serverError: err.response.data
+              serverError: "Error"
+              // serverError: err.response.data
             })
             setSubmitting(false)
             setLoading(false)
