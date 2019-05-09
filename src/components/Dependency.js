@@ -25,9 +25,11 @@ const Dependency = ({ parent, dependencies, number }) => {
           <Text fontWeight='bold' fontSize={[2, 3]}>
             {number}. {parent.name}
           </Text>
-          <Text fontSize={2}>
-            {parent.license ? parent.license : 'Unknown'}
-          </Text>
+           {parent.licenses.map(l => (
+           <Text fontSize={2}>
+             {l.license ? l.license : 'Unknown'}      
+           </Text>
+           )}
           <Text fontSize={1}>
             {parent.author ? parent.author.name : 'Unknown'}
           </Text>
