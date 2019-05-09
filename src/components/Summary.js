@@ -37,7 +37,6 @@ const Summary = ({ dependencies }) => {
       <Box>
         <Flex flexWrap='wrap'>
           {u.map((d, i) =>
-            d.licenses.map(c => (
               <BlueOak
                 mr={2}
                 my={1}
@@ -45,9 +44,8 @@ const Summary = ({ dependencies }) => {
                 key={i}
                 width={30}
                 height={30}
-                rating={c.color}
+                rating={d}
               />
-            ))
           )}
         </Flex>
       </Box>
