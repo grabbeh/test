@@ -1,5 +1,4 @@
 import _ from 'lodash'
-
 import semver from 'semver'
 import axios from 'axios'
 import updateLicense from './convert'
@@ -51,13 +50,23 @@ const checkInput = async input => {
 }
 
 const process = arr => {
-  return arr.map(i => {
+   let topLevel =    
+       _.chain(arr)
+          .filter(a => {
+    return a.dependencies
+   })
+   .map(a => {
+     return a.parent
+   })
+   .value()
+  let children = arr.map(i => {
     if (i.dependencies) {
       return process(i.dependencies)
     } else {
       return i.parent
     }
   })
+  return _.flattenDeep(_.concat(topLevel, children))
 }
 
 const aggregate = arr => {
