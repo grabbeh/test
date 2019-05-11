@@ -21,7 +21,7 @@ const Dependency = ({ parent, dependencies, number }) => {
         rating={parent.licenses[0].color}
       >
         <Text fontWeight='bold' fontSize={[2, 3]}>
-          {number}. {parent.name}
+          {parent.name}
         </Text>
         {parent.licenses.map((l, i) => {
           return (
