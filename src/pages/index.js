@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState } from 'react'
 import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
@@ -18,7 +18,6 @@ import Spinner from 'react-svg-spinner'
 
 const Example = () => {
   let [response, setResponse] = useState(null)
-  console.log(response)
   let [loading, setLoading] = useState(null)
   return (
     <Layout>
@@ -52,8 +51,8 @@ const Example = () => {
             </Tabs>
           </Box>
           {response && (
-            <Fragment>
-              <Box py={2}>
+            <Box>
+              <Box>
                 <Text fontSize={4} fontWeight='bold'>
                   Results
                 </Text>
@@ -68,7 +67,7 @@ const Example = () => {
               <Box>
                 <Summary dependencies={response.combined} />
               </Box>
-            </Fragment>
+            </Box>
           )}
         </Box>
         <Box p={[2, 3]} width={[1, 0.7]}>

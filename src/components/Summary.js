@@ -5,6 +5,8 @@ import Box from './Box'
 import Text from './Text'
 import BlueOak from './BlueOak'
 
+// filter for uniques, except if more than one license type
+// sort alphabetically
 const Summary = ({ dependencies }) => {
   let colors = dependencies.map(d => {
     return d.licenses.map(l => {

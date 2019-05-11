@@ -35,7 +35,6 @@ const updateLicenseInfo = o => {
     // sometimes license can be object with license.type notation
   }
   if (license && typeof license === 'object') {
-    console.log('License object!!')
     return [{ license: license.type, color: getColor(license.type, revised) }]
   }
   // if multiple licenses, map over each to return type

@@ -5,7 +5,7 @@ import Flex from './Flex'
 import Logo from './Logo'
 
 const Header = () => (
-  <Box pb={2} mb={2}>
+  <Box mb={2}>
     <Flex flexWrap='wrap'>
       <Text.s mt={13} mr={2}>
         <Logo />

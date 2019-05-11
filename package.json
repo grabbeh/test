@@ -1,5 +1,5 @@
 {
-  "name": "License-checker",
+  "name": "license-checker",
   "private": true,
   "description": "Check yo' licences",
   "version": "0.1.0",
@@ -41,7 +41,7 @@
     "develop": "gatsby develop",
     "start": "run-p start:**",
     "start:app": "gatsby serve -p 8000",
-    "start:lambda": "netlify-lambda serve src/lambda -t 60",
+    "start:lambda": "netlify-lambda serve src/lambda -t 1000",
     "build": "run-p build:**",
     "build:app": "gatsby build",
     "build:lambda": "netlify-lambda build src/lambda"

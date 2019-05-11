@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import semver from 'semver'
 import axios from 'axios'
-import updateLicense from './convert'
+import convert from './convert'
 // import test from './test.json'
 
 export async function handler (event, context) {
@@ -9,7 +9,6 @@ export async function handler (event, context) {
     let input = JSON.parse(event.body)
     let data = await checkInput(input)
     let { dependencies } = data
-
     // No dependencies
     if (!dependencies) {
       return {
@@ -20,13 +19,11 @@ export async function handler (event, context) {
 
     // scoped packages error
     // version not found error - just grab repository details and then get latest version?
-
-    // ideally need to fetch details for main package - although in reality that may not
-    // be on npm anyway - can just obtain license from package.json file :D
-    // let primary = await axios(getNpmURL(name, version))
-
     let tree = await getTreeData(dependencies)
-    let combined = aggregate(tree)
+    // test code
+    // let tree = await getTreeData(test)
+    let combined = process(tree)
+    // let data = { msg: 'Hello World' }
     return {
       statusCode: 200,
       body: JSON.stringify({ tree, combined, data })
@@ -49,63 +46,56 @@ const checkInput = async input => {
   }
 }
 
-const process = arr => {
-   let topLevel =    
-       _.chain(arr)
-          .filter(a => {
-    return a.dependencies
-   })
-   .map(a => {
-     return a.parent
-   })
-   .value()
-  let children = arr.map(i => {
-    if (i.dependencies) {
-      return process(i.dependencies)
-    } else {
-      return i.parent
-    }
+const process = a => {
+  // if top level has dependencies then it won't return its own data under the next fn below
+  // hence this fn
+  let topLevel = _.reduce(
+    a,
+    (result, { dependencies, parent }) => {
+      return [...result, dependencies ? parent : []]
+    },
+    []
+  )
+  let children = a.map(({ dependencies, parent }) => {
+    return dependencies ? process(dependencies) : parent
   })
   return _.flattenDeep(_.concat(topLevel, children))
 }
 
-const aggregate = arr => {
-  return _.flattenDeep(process(arr))
-}
-
 const getURLs = dependencies => {
-  return Object.entries(dependencies).map(i => {
-    let [key, value] = i
-    return getNpmURL(key, value)
-  })
+  return _.reduce(
+    Object.entries(dependencies),
+    (result, [key, value]) => {
+      return [...result, getNpmURL(key, value) || []]
+    },
+    []
+  )
 }
 
 const getNpmURL = (name, version) => {
   let clean = semver.valid(semver.coerce(version))
-  if (clean !== null) return `https://registry.npmjs.org/${name}/${clean}`
-}
-
-const filterDependencies = dependencies => {
-  return _.omitBy(dependencies, (value, key) => {
-    return key.startsWith('@')
-  })
+  if (!clean) {
+    return false
+    // filter out scoped packages for the time being
+  } else if (name.startsWith('@')) {
+    return false
+  } else {
+    return `https://registry.npmjs.org/${name}/${clean}`
+  }
 }
 
 const getTreeData = async dependencies => {
-  let filtered = filterDependencies(dependencies)
-  let urls = getURLs(filtered).filter(f => {
-    return f !== undefined
-  })
+  let urls = getURLs(dependencies)
   let promises = urls.map(async url => {
     let { data } = await axios(url)
     let { dependencies } = data
     if (dependencies && Object.keys(dependencies).length > 0) {
       return {
-        parent: updateLicense(data),
+        parent: convert(data),
         dependencies: await getTreeData(dependencies)
       }
     } else {
-      return { parent: updateLicense(data) }
+      return { parent: convert(data) }
     }
   })
   // https://stackoverflow.com/questions/30362733/handling-errors-in-promise-all
@@ -116,6 +106,7 @@ const getTreeData = async dependencies => {
       })
     )
   )
+  // const errors = results.filter(result => result instanceof Error)
   const valid = results.filter(result => !(result instanceof Error))
   return valid
 }

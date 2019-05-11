@@ -17,6 +17,7 @@ const FullTable = props => {
       return _.pick(r, ['name', 'license'])
     })
     .value()
+
   let dataColumns = _.keys(picked[0])
   const tableHeaders = (
     <thead>
