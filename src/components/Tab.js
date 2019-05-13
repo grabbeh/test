@@ -7,7 +7,6 @@ const Tab = props => {
     <StyledTab
       mb={3}
       mr={4}
-      py={1}
       {...props}
       onClick={props.isDisabled ? null : props.onSelect}
     >

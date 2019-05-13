@@ -12,6 +12,7 @@ import Spinner from 'react-svg-spinner'
 
 const UrlForm = props => {
   let { setLoading, setResponse } = props
+
   return (
     <Formik
       initialValues={{
@@ -39,9 +40,8 @@ const UrlForm = props => {
             setLoading(false)
           })
           .catch(err => {
-            console.log(err)
             setErrors({
-              serverError: "Error"
+              serverError: 'Error'
               // serverError: err.response.data
             })
             setSubmitting(false)

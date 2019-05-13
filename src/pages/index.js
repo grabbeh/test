@@ -1,4 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import qs from 'query-string'
+import axios from 'axios'
+import { graphql } from 'gatsby'
 import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
@@ -16,9 +19,27 @@ import Tree from '../components/TreeStructure'
 import Flex from '../components/Flex'
 import Spinner from 'react-svg-spinner'
 
-const Example = () => {
+const Example = ({ location, data: { markdownRemark } }) => {
+  let { html } = markdownRemark
   let [response, setResponse] = useState(null)
   let [loading, setLoading] = useState(null)
+
+  useEffect(() => {
+    let { url } = qs.parse(location.search)
+    if (url) {
+      setLoading(true)
+      axios
+        .post('/.netlify/functions/submit-license', { url })
+        .then(r => {
+          setResponse(r.data)
+          setLoading(false)
+        })
+        .catch(err => {
+          setLoading(false)
+        })
+    }
+  }, [])
+
   return (
     <Layout>
       <Flex flexWrap='wrap'>
@@ -81,6 +102,9 @@ const Example = () => {
               <Spinner size='64px' speed='slow' thickness={3} color='#1da1f2' />
             </Flex>
           )}
+          {!response && !loading && (
+            <Box dangerouslySetInnerHTML={{ __html: html }} />
+          )}
           {response && (
             <Tabs>
               <TabList>
@@ -110,3 +134,11 @@ const Example = () => {
 }
 
 export default Example
+
+export const query = graphql`
+  query {
+    markdownRemark {
+      html
+    }
+  }
+`

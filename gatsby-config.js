@@ -17,5 +17,17 @@ module.exports = {
     description: `Check yo' licences, fool`,
     author: `@grabbeh`
   },
-  plugins: [`gatsby-plugin-react-helmet`, `gatsby-plugin-styled-components`]
+  plugins: [
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-mdx`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/markdown/`
+      }
+    },
+    `gatsby-transformer-remark`
+  ]
 }

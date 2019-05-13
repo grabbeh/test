@@ -5,7 +5,7 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 import BlueOak from './BlueOak'
 import styled, { css } from 'styled-components'
 
-const Dependency = ({ parent, dependencies, number }) => {
+const Dependency = ({ parent, dependencies }) => {
   let [hidden, setHidden] = useState(true)
   return (
     <Fragment>
