@@ -7,7 +7,6 @@ import convert from './convert'
 export async function handler (event, context) {
   try {
     let input = JSON.parse(event.body)
-    console.log(input)
     let data = await checkInput(input)
     let { dependencies } = data
     // No dependencies

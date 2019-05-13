@@ -1,6 +1,7 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
 import { string, object } from 'yup'
+import { navigate } from '@reach/router'
 import Box from './Box'
 import Text from './Text'
 import Flex from './Flex'
@@ -38,6 +39,7 @@ const UrlForm = props => {
             setResponse(r.data)
             setSubmitting(false)
             setLoading(false)
+            navigate(`/?url=${url}`)
           })
           .catch(err => {
             setErrors({
