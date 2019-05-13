@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formik, Form } from 'formik'
 import { string, object } from 'yup'
-import { navigate } from '@reach/router'
+import { navigate } from 'gatsby'
 import Box from './Box'
 import Text from './Text'
 import Flex from './Flex'
