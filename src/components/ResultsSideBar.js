@@ -9,6 +9,7 @@ import MainPackage from './MainPackage'
 import Summary from './Summary'
 
 const ResultsSideBar = (props) => {
+  console.log(props)
   let { response } = props
 
 return (
