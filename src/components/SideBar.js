@@ -3,6 +3,10 @@ import Tabs from './Tabs'
 import Tab from './Tab'
 import TabList from './TabList'
 import TabPanels from './TabPanels'
+import UrlForm from './UrlForm'
+import JSONForm from './JSONForm'
+import Box from './Box'
+import Text from './Text'
 
 const SideBar = (props) => {
 let { setLoading, setResponse } = props
