@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Text from './Text'
 
 const FullTable = props => {
-  // filter uniques except where licenses length > 2
+  // TODO: filter uniques except where licenses length > 2
   let { dataRows } = props
   let picked = _.chain(dataRows)
     .map(d => {
