@@ -4,13 +4,14 @@ import Flex from './Flex'
 import Box from './Box'
 import Text from './Text'
 import BlueOak from './BlueOak'
+import ToolTip from './ToolTip'
 
 // filter for uniques, except if more than one license type
 // sort alphabetically
 const Summary = ({ dependencies }) => {
   let colors = dependencies.map(d => {
-    return d.licenses.map(l => {
-      return l.color
+    return d.licenses.map(({ color }) => {
+      return { name: d.name, color }
     })
   })
 
@@ -27,16 +28,19 @@ const Summary = ({ dependencies }) => {
     <Box>
       <Box>
         <Flex flexWrap='wrap'>
-          {u.map((d, i) => (
-            <BlueOak
-              mr={2}
-              my={1}
-              borderRadius={2}
-              key={i}
-              width={30}
-              height={30}
-              rating={d}
-            />
+          {u.map(({ color, name }, i) => (
+            <ToolTip name={name}>
+              <BlueOak
+                mr={2}
+                my={1}
+                borderRadius={2}
+                key={i}
+                width={30}
+                height={30}
+                rating={color}
+                position='relative'
+              />
+            </ToolTip>
           ))}
         </Flex>
       </Box>
@@ -51,8 +55,6 @@ const Summary = ({ dependencies }) => {
                 <Text>{f[keyName]}</Text>
               </Box>
             </Box>
-            // use keyName to get current key's name
-            // and a[keyName] to get its value
           ))}
         </Flex>
       </Box>

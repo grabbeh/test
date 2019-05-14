@@ -5,19 +5,15 @@ import { graphql } from 'gatsby'
 import Box from '../components/Box'
 import Layout from '../components/Layout'
 import Text from '../components/Text'
-import UrlForm from '../components/UrlForm'
-import Summary from '../components/Summary'
-import MainPackage from '../components/MainPackage'
 import Header from '../components/Header'
 import Tabs from '../components/Tabs'
 import Tab from '../components/Tab'
 import TabList from '../components/TabList'
 import TabPanels from '../components/TabPanels'
-import JSONForm from '../components/JSONForm'
 import Table from '../components/Table'
 import Tree from '../components/TreeStructure'
 import Flex from '../components/Flex'
-import SideBar from '../components/SideBar'
+import InputSideBar from '../components/InputSideBar'
 import ResultsSideBar from '../components/ResultsSideBar'
 import Spinner from 'react-svg-spinner'
 
@@ -28,6 +24,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
 
   useEffect(() => {
     let { url } = qs.parse(location.search)
+    console.log(url)
     if (url) {
       setLoading(true)
       axios
@@ -45,12 +42,15 @@ const Example = ({ location, data: { markdownRemark } }) => {
   return (
     <Layout>
       <Flex flexWrap='wrap'>
-        <Box bg='light-gray' p={[2, 3]} minHeight={[1,'100vh']} width={[1, 0.3]}>
+        <Box
+          bg='light-gray'
+          p={[2, 3]}
+          minHeight={[1, '100vh']}
+          width={[1, 0.3]}
+        >
           <Header />
-          <SideBar setLoading={setLoading} setResponse={setResponse} />
-          {response && (
-            <ResultsSideBar response={response} />
-          )}
+          <InputSideBar setLoading={setLoading} setResponse={setResponse} />
+          {response && <ResultsSideBar response={response} />}
         </Box>
         <Box p={[2, 3]} width={[1, 0.7]}>
           {loading && (
@@ -70,13 +70,13 @@ const Example = ({ location, data: { markdownRemark } }) => {
             <Tabs>
               <TabList>
                 <Tab>
-                  <Text color='black'>Tree</Text>
+                  <Text>Tree</Text>
                 </Tab>
                 <Tab>
-                  <Text color='black'>Table</Text>
+                  <Text>Table</Text>
                 </Tab>
                 <Tab>
-                  <Text color='black'>Attribution</Text>
+                  <Text>Attribution</Text>
                 </Tab>
               </TabList>
               <TabPanels>
