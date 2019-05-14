@@ -17,6 +17,7 @@ import JSONForm from '../components/JSONForm'
 import Table from '../components/Table'
 import Tree from '../components/TreeStructure'
 import Flex from '../components/Flex'
+import SideBar from '../components/SideBar'
 import Spinner from 'react-svg-spinner'
 
 const Example = ({ location, data: { markdownRemark } }) => {
@@ -45,32 +46,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
       <Flex flexWrap='wrap'>
         <Box bg='light-gray' p={[2, 3]} minHeight='100vh' width={[1, 0.3]}>
           <Header />
-          <Box>
-            <Tabs>
-              <TabList>
-                <Tab>
-                  <Text>URL</Text>
-                </Tab>
-                <Tab>
-                  <Text>Paste</Text>
-                </Tab>
-                <Tab>
-                  <Text>Upload</Text>
-                </Tab>
-              </TabList>
-              <TabPanels>
-                <Box>
-                  <UrlForm setLoading={setLoading} setResponse={setResponse} />
-                </Box>
-                <Box>
-                  <JSONForm setLoading={setLoading} setResponse={setResponse} />
-                </Box>
-                <Box>
-                  <Text>Coming soon</Text>
-                </Box>
-              </TabPanels>
-            </Tabs>
-          </Box>
+          <SideBar setLoading={setLoading} setResponse={setResponse} />
           {response && (
             <Box>
               <Box>
