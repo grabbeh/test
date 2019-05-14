@@ -8,4 +8,5 @@ See some samples:
 
 - [Express](https://license-checker.netlify.com/?url=https://raw.githubusercontent.com/expressjs/express/master/package.json)
 - [Request](https://license-checker.netlify.com/?url=https://raw.githubusercontent.com/request/request/master/package.json)
+- [Glob](https://license-checker.netlify.com/?url=https://raw.githubusercontent.com/isaacs/node-glob/master/package.json)
 
