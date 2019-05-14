@@ -16,7 +16,6 @@ const FullTable = props => {
     .map(r => {
       return _.pick(r, ['name', 'license'])
     })
-    .sortedUniqBy('license')
     .value()
 
   let dataColumns = _.keys(picked[0])
