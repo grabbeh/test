@@ -18,6 +18,7 @@ import Table from '../components/Table'
 import Tree from '../components/TreeStructure'
 import Flex from '../components/Flex'
 import SideBar from '../components/SideBar'
+import ResultsSideBar from '../components/ResultsSideBar'
 import Spinner from 'react-svg-spinner'
 
 const Example = ({ location, data: { markdownRemark } }) => {
@@ -44,27 +45,11 @@ const Example = ({ location, data: { markdownRemark } }) => {
   return (
     <Layout>
       <Flex flexWrap='wrap'>
-        <Box bg='light-gray' p={[2, 3]} minHeight='100vh' width={[1, 0.3]}>
+        <Box bg='light-gray' p={[2, 3]} minHeight={[1,'100vh']} width={[1, 0.3]}>
           <Header />
           <SideBar setLoading={setLoading} setResponse={setResponse} />
           {response && (
-            <Box>
-              <Box>
-                <Text fontSize={4} fontWeight='bold'>
-                  Results
-                </Text>
-              </Box>
-              <MainPackage main={response.data} />
-              <Box>
-                <Text fontSize={3} fontWeight='bold'>
-                  Dependencies
-                </Text>
-                <Text fontSize={3}>{response.combined.length}</Text>
-              </Box>
-              <Box>
-                <Summary dependencies={response.combined} />
-              </Box>
-            </Box>
+            <ResultsSideBar response={response} />
           )}
         </Box>
         <Box p={[2, 3]} width={[1, 0.7]}>
