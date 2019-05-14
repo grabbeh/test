@@ -1,16 +1,17 @@
 import React from 'react'
+import Tabs from './Tabs'
+import Tab from './Tab'
+import TabList from './TabList'
+import TabPanels from './TabPanels'
 
 const SideBar = (props) => {
 let { setLoading, setResponse } = props
 
 return (
-<Box>
-
-            <Tabs>
-
-              <TabList>
-
-                <Tab>
+  <Box>
+    <Tabs>
+      <TabList>
+         <Tab>
 
                   <Text>URL</Text>
 
