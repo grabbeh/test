@@ -26,7 +26,8 @@ const Dependency = ({ parent, dependencies }) => {
           </Text>
           <BlueOak m={2} width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
         </Flex>
-        {parent.licenses.map((l, i) => {
+        {parent.licenses.length < 2 && <Text key={i} fontSize={2}>{l.license ? l.license : 'Unknown'}</Text>}
+        {parent.licenses.length > 1 && parent.licenses.map((l, i) => {
           return (
             <Text key={i} fontSize={2}>{l.license ? l.license : 'Unknown'}</Text>
           )
