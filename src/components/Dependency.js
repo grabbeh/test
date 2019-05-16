@@ -9,7 +9,7 @@ const Dependency = ({ parent, dependencies }) => {
   let [hidden, setHidden] = useState(true)
   return (
     <Fragment>
-      <BlueOak
+      <Box
         key={parent.name}
         p={2}
         pl={3}
@@ -18,11 +18,16 @@ const Dependency = ({ parent, dependencies }) => {
         borderRadius={2}
         boxShadowSize='sm'
         position='relative'
-        rating={parent.licenses[0].color}
       >
+    
+        <Flex justifyContent='flex-start'>
         <Text fontWeight='bold' fontSize={[2, 3]}>
           {parent.name}
         </Text>
+        </Flex>
+        <Flex justifyContent='flex-end'>
+        <BlueOak width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
+        </Flex>
         {parent.licenses.map((l, i) => {
           return (
             <BlueOak key={i} rating={l.color}>
@@ -61,7 +66,7 @@ const Dependency = ({ parent, dependencies }) => {
             ))}
           </Text>
         )}
-      </BlueOak>
+      </Box>
     </Fragment>
   )
 }
