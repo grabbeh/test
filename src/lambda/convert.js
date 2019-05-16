@@ -17,6 +17,7 @@ const convert = o => {
 
 let revised = convert(blueoak)
 
+// This gets Blue Oak rating of permissive license
 const getColor = (license, info) => {
   let color = null
   info.forEach(r => {
@@ -50,6 +51,7 @@ const updateLicenseInfo = o => {
 }
 
 const updateLicense = o => {
+  // regardless of whether license or licenses, we just put info into 'licenses' variable
   let licenses = updateLicenseInfo(o)
   return {
     ...o,
