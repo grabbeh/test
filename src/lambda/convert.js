@@ -39,13 +39,10 @@ const updateLicenseInfo = o => {
   }
   // if multiple licenses, map over each to return type
   if (licenses) {
-    let extracted = licenses.map(l => {
-      return l.type
-    })
-    return extracted.map(l => {
+    return licenses.map(({type}) => {
       return {
-        license: l,
-        color: getColor(l, revised)
+        license: type,
+        color: getColor(type, revised)
       }
     })
   }
