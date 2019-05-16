@@ -28,7 +28,7 @@ const Dependency = ({ parent, dependencies }) => {
           </Text>
           </Box>
           <Box width={0.2}>
-          <BlueOak m={2} width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
+          <BlueOak width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
           </Box>
         </Flex>
         {parent.licenses.length < 2 && <Text fontSize={2}>{parent.licenses[0].license ? parent.licenses[0].license : 'Unknown'}</Text>}
