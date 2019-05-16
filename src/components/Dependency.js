@@ -11,8 +11,6 @@ const Dependency = ({ parent, dependencies }) => {
   return (
     <Fragment>
       <Box
-        border='1px solid'
-        borderColor='black'
         key={parent.name}
         p={2}
         pl={3}
