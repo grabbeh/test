@@ -52,7 +52,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
           <InputSideBar setLoading={setLoading} setResponse={setResponse} />
           {response && <ResultsSideBar response={response} />}
         </Box>
-        <Box p={[2, 3]} width={[1, 0.7]}>
+        <Box minHeight={[1, '100vh']} bg='light-gray' p={[2, 3]} width={[1, 0.7]}>
           {loading && (
             <Flex
               height='100%'
