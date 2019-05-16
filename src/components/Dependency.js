@@ -22,18 +22,16 @@ const Dependency = ({ parent, dependencies }) => {
       >
     
         <Flex justifyContent='flex-start'>
-        <Text fontWeight='bold' fontSize={[2, 3]}>
-          {parent.name}
-        </Text>
+          <Text fontWeight='bold' fontSize={[2, 3]}>
+            {parent.name}
+          </Text>
         </Flex>
         <Flex justifyContent='flex-end'>
-        <BlueOak width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
+          <BlueOak width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
         </Flex>
         {parent.licenses.map((l, i) => {
           return (
-            <BlueOak key={i} rating={l.color}>
-              <Text fontSize={2}>{l.license ? l.license : 'Unknown'}</Text>
-            </BlueOak>
+            <Text key={i} fontSize={2}>{l.license ? l.license : 'Unknown'}</Text>
           )
         })}
         <Text fontSize={1}>
