@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import Text from './Text'
 import Box from './Box'
+import Flex from './Flex'
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 import BlueOak from './BlueOak'
 import styled, { css } from 'styled-components'
