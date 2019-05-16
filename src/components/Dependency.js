@@ -20,7 +20,7 @@ const Dependency = ({ parent, dependencies }) => {
         boxShadowSize='sm'
         position='relative'
       >
-    
+        <Flex flexWrap='wrap'>
         <Flex justifyContent='flex-start'>
           <Text fontWeight='bold' fontSize={[2, 3]}>
             {parent.name}
@@ -28,6 +28,7 @@ const Dependency = ({ parent, dependencies }) => {
         </Flex>
         <Flex justifyContent='flex-end'>
           <BlueOak width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
+        </Flex>
         </Flex>
         {parent.licenses.map((l, i) => {
           return (
