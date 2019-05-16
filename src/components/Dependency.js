@@ -22,10 +22,12 @@ const Dependency = ({ parent, dependencies }) => {
         position='relative'
       >
         <Flex flexWrap='wrap' justifyContent='space-between'>
+          <Box width={0.8}>
           <Text fontWeight='bold' fontSize={[2, 3]}>
             {parent.name}
           </Text>
-          <BlueOak m={2} width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
+          </Box>
+          <BlueOak width={0.2} m={2} width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
         </Flex>
         {parent.licenses.length < 2 && <Text fontSize={2}>{parent.licenses[0].license ? parent.licenses[0].license : 'Unknown'}</Text>}
         {parent.licenses.length > 1 && parent.licenses.map((l, i) => {
