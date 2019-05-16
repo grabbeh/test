@@ -11,6 +11,8 @@ const Dependency = ({ parent, dependencies }) => {
   return (
     <Fragment>
       <Box
+        border='1px solid'
+        borderColor='black'
         key={parent.name}
         p={2}
         pl={3}
@@ -24,7 +26,7 @@ const Dependency = ({ parent, dependencies }) => {
           <Text fontWeight='bold' fontSize={[2, 3]}>
             {parent.name}
           </Text>
-          <BlueOak width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
+          <BlueOak m={2} width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
         </Flex>
         {parent.licenses.map((l, i) => {
           return (
