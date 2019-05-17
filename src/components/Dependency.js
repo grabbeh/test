@@ -8,7 +8,7 @@ import styled, { css } from 'styled-components'
 
 const Dependency = ({ parent, dependencies }) => {
   let [hidden, setHidden] = useState(true)
-  let { name, author, licenses } = dependencies
+  let { name, author, licenses } = parent
   return (
     <Fragment>
       <Box
