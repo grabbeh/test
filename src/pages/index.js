@@ -16,6 +16,7 @@ import Flex from '../components/Flex'
 import InputSideBar from '../components/InputSideBar'
 import ResultsSideBar from '../components/ResultsSideBar'
 import Loading from '../components/Loading'
+import AttributionList from '../components/AttributionList'
 
 const Example = ({ location, data: { markdownRemark } }) => {
   let { html } = markdownRemark
@@ -74,7 +75,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
                 <Tree tree={response.tree} />
                 <Table dataRows={response.combined} />
                 <Box>
-                  <Text color='black'>Coming soon</Text>
+                  <AttributionList dependencies={response.combined} />
                 </Box>
               </TabPanels>
             </Tabs>

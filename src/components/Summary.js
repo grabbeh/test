@@ -29,12 +29,11 @@ const Summary = ({ dependencies }) => {
       <Box>
         <Flex flexWrap='wrap'>
           {u.map(({ color, name }, i) => (
-            <ToolTip name={name}>
+            <ToolTip key={i} name={name}>
               <BlueOak
                 mr={2}
                 my={1}
                 borderRadius={2}
-                key={i}
                 width={30}
                 height={30}
                 rating={color}

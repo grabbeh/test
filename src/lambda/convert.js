@@ -29,14 +29,14 @@ const getColor = (license, info) => {
   return color
 }
 
-const updateLicenseInfo = o => {
+const updateLicenseInfo = async o => {
   let { license, licenses, licenseText } = o
   // if just one license, things are simple, just return object with license/color
   if (license && typeof license !== 'object') {
     return [
       {
         license: license,
-        licenseText: getLicenseText(license, licenseText),
+        licenseText: await getLicenseText(license, licenseText),
         color: getColor(license, revised)
       }
     ]
@@ -46,17 +46,17 @@ const updateLicenseInfo = o => {
     return [
       {
         license: license.type,
-        licenseText: getLicenseText(license.type, licenseText),
+        licenseText: await getLicenseText(license.type, licenseText),
         color: getColor(license.type, revised)
       }
     ]
   }
   // if multiple licenses, map over each to return type
   if (licenses) {
-    return licenses.map(({ type }) => {
+    return licenses.map(async ({ type }) => {
       return {
         license: type,
-        licenseText: getLicenseText(type, licenseText),
+        licenseText: await getLicenseText(type, licenseText),
         color: getColor(type, revised)
       }
     })
@@ -64,9 +64,9 @@ const updateLicenseInfo = o => {
   return [{ license: null, color: null }]
 }
 
-const updateLicense = o => {
+const updateLicense = async o => {
   // regardless of whether license or licenses, we just put info into 'licenses' variable
-  let licenses = updateLicenseInfo(o)
+  let licenses = await updateLicenseInfo(o)
   return {
     ...o,
     licenses

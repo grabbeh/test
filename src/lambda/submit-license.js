@@ -21,7 +21,7 @@ export async function handler (event, context) {
     // version not found error - just grab repository details and then get latest version?
     let tree = await getTreeData(dependencies)
     // test code
-    // let tree = await getTreeData(test)
+    // let tree = await getTreeDataco(test)
     let combined = process(tree)
     // let data = { msg: 'Hello World' }
     return {
@@ -92,11 +92,11 @@ const getTreeData = async dependencies => {
     let { dependencies } = data
     if (dependencies && Object.keys(dependencies).length > 0) {
       return {
-        parent: convert(data),
+        parent: await convert(data),
         dependencies: await getTreeData(dependencies)
       }
     } else {
-      return { parent: convert(data) }
+      return { parent: await convert(data) }
     }
   })
   // https://stackoverflow.com/questions/30362733/handling-errors-in-promise-all
