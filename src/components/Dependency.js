@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import Text from './Text'
 import Box from './Box'
+import Flex from './Flex'
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 import BlueOak from './BlueOak'
 import styled, { css } from 'styled-components'
@@ -9,7 +10,8 @@ const Dependency = ({ parent, dependencies }) => {
   let [hidden, setHidden] = useState(true)
   return (
     <Fragment>
-      <BlueOak
+      <Box
+        bg='white'
         key={parent.name}
         p={2}
         pl={3}
@@ -18,16 +20,23 @@ const Dependency = ({ parent, dependencies }) => {
         borderRadius={2}
         boxShadowSize='sm'
         position='relative'
-        rating={parent.licenses[0].color}
       >
-        <Text fontWeight='bold' fontSize={[2, 3]}>
-          {parent.name}
-        </Text>
-        {parent.licenses.map((l, i) => {
+        <Flex flexWrap='wrap' justifyContent='space-between'>
+          <Box width={0.7}>
+          <Text fontWeight='bold' fontSize={[2, 3]}>
+            {parent.name}
+          </Text>
+          </Box>
+          <Box width={0.2}>
+          <Flex justifyContent='flex-end'>
+             <BlueOak width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
+          </Flex>
+          </Box>
+        </Flex>
+        {parent.licenses.length < 2 && <Text fontSize={2}>{parent.licenses[0].license ? parent.licenses[0].license : 'Unknown'}</Text>}
+        {parent.licenses.length > 1 && parent.licenses.map((l, i) => {
           return (
-            <BlueOak key={i} rating={l.color}>
-              <Text fontSize={2}>{l.license ? l.license : 'Unknown'}</Text>
-            </BlueOak>
+            <Text key={i} fontSize={2}>{l.license ? l.license : 'Unknown'}</Text>
           )
         })}
         <Text fontSize={1}>
@@ -61,7 +70,7 @@ const Dependency = ({ parent, dependencies }) => {
             ))}
           </Text>
         )}
-      </BlueOak>
+      </Box>
     </Fragment>
   )
 }

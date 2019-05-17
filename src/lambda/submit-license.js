@@ -63,6 +63,7 @@ const process = a => {
 }
 
 const getURLs = dependencies => {
+  // reduce works to filter out false urls returned from getNpmUrl fn below
   return _.reduce(
     Object.entries(dependencies),
     (result, [key, value]) => {
