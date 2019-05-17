@@ -15,7 +15,7 @@ import Tree from '../components/TreeStructure'
 import Flex from '../components/Flex'
 import InputSideBar from '../components/InputSideBar'
 import ResultsSideBar from '../components/ResultsSideBar'
-import Spinner from 'react-svg-spinner'
+import Loading from '../components/Loading'
 
 const Example = ({ location, data: { markdownRemark } }) => {
   let { html } = markdownRemark
@@ -53,16 +53,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
           {response && <ResultsSideBar response={response} />}
         </Box>
         <Box p={[2, 3]} width={[1, 0.7]}>
-          {loading && (
-            <Flex
-              height='100%'
-              alignItems='center'
-              flexWrap='wrap'
-              justifyContent='center'
-            >
-              <Spinner size='64px' speed='slow' thickness={3} color='#1da1f2' />
-            </Flex>
-          )}
+          {loading && <Loading />}
           {!response && !loading && (
             <Box dangerouslySetInnerHTML={{ __html: html }} />
           )}
