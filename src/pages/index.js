@@ -44,7 +44,6 @@ const Example = ({ location, data: { markdownRemark } }) => {
     <Layout>
       <Flex flexWrap='wrap'>
         <Box
-          bg='light-gray'
           p={[2, 3]}
           minHeight={[1, '100vh']}
           width={[1, 0.3]}
@@ -53,7 +52,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
           <InputSideBar setLoading={setLoading} setResponse={setResponse} />
           {response && <ResultsSideBar response={response} />}
         </Box>
-        <Box bg='light-gray' minHeight='100vh' p={[2, 3]} width={[1, 0.7]}>
+        <Box minHeight='100vh' p={[2, 3]} width={[1, 0.7]}>
           {loading && <Loading />}
           {!response && !loading && (
             <Box dangerouslySetInnerHTML={{ __html: html }} />
