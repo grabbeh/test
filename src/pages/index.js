@@ -52,7 +52,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
           <InputSideBar setLoading={setLoading} setResponse={setResponse} />
           {response && <ResultsSideBar response={response} />}
         </Box>
-        <Box p={[2, 3]} width={[1, 0.7]}>
+        <Box bg='light-gray' height='100vh' p={[2, 3]} width={[1, 0.7]}>
           {loading && <Loading />}
           {!response && !loading && (
             <Box dangerouslySetInnerHTML={{ __html: html }} />

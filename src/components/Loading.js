@@ -1,3 +1,4 @@
+import React from 'react'
 import Spinner from 'react-svg-spinner'
 import Flex from './Flex'
 
