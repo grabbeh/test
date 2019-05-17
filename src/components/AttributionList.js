@@ -4,11 +4,14 @@ import Text from '../components/Text'
 
 const AttributionList = ({ dependencies }) => {
   return (
-    <Box borderBottom='2px solid' borderColor='black'>
+    <Box>
       {dependencies.map(d => {
         return d.licenses.map((l, i) => (
-          <Box key={i}>
-            <Text>{d.name}</Text>
+          <Box pb={2} borderBottom='2px solid' borderColor='black' key={i}>
+            <Box py={2}>
+            <Text fontWeight='bold'>{d.name}</Text>
+            </Box>
+            
             <Text>{l.licenseText}</Text>
           </Box>
         ))
