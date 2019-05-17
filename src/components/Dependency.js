@@ -8,11 +8,12 @@ import styled, { css } from 'styled-components'
 
 const Dependency = ({ parent, dependencies }) => {
   let [hidden, setHidden] = useState(true)
+  let { name, author, licenses } = dependencies
   return (
     <Fragment>
       <Box
         bg='white'
-        key={parent.name}
+        key={pname}
         p={2}
         pl={3}
         mr={3}
@@ -24,23 +25,23 @@ const Dependency = ({ parent, dependencies }) => {
         <Flex flexWrap='wrap' justifyContent='space-between'>
           <Box width={0.7}>
           <Text fontWeight='bold' fontSize={[2, 3]}>
-            {parent.name}
+            {name}
           </Text>
           </Box>
           <Box width={0.2}>
           <Flex justifyContent='flex-end'>
-             <BlueOak width={20} height={20} borderRadius={2} rating={parent.licenses[0].color} />
+             <BlueOak width={20} height={20} borderRadius={2} rating={licenses[0].color} />
           </Flex>
           </Box>
         </Flex>
-        {parent.licenses.length < 2 && <Text fontSize={2}>{parent.licenses[0].license ? parent.licenses[0].license : 'Unknown'}</Text>}
-        {parent.licenses.length > 1 && parent.licenses.map((l, i) => {
+        {licenses.length < 2 && <Text fontSize={2}>{licenses[0].license ? licenses[0].license : 'Unknown'}</Text>}
+        {licenses.length > 1 && licenses.map((l, i) => {
           return (
             <Text key={i} fontSize={2}>{l.license ? l.license : 'Unknown'}</Text>
           )
         })}
         <Text fontSize={1}>
-          {parent.author ? parent.author.name : 'Unknown'}
+          {author ? author.name : 'Unknown'}
         </Text>
         {dependencies && (
           <Text>
