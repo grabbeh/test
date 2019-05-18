@@ -22,11 +22,13 @@ export async function handler (event, context) {
     let tree = await getTreeData(dependencies)
     // test code
     // let tree = await getTreeDataco(test)
-    let combined = process(tree)
+
+    // TODO: Add license text to combined rather than tree
+    let flattened = process(tree)
     // let data = { msg: 'Hello World' }
     return {
       statusCode: 200,
-      body: JSON.stringify({ tree, combined, data })
+      body: JSON.stringify({ tree, flattened, data })
     }
   } catch (err) {
     console.log(err)
@@ -61,12 +63,14 @@ const process = a => {
   })
 
   let arr = _.flattenDeep(_.concat(topLevel, children))
+  // get uniq deps where only one license
   let lone = _.uniqBy(
     arr.filter(a => {
       return a.licenses.length === 1
     }),
     'name'
   )
+  // keep record of deps where more than 1 license
   let licenses = arr.filter(a => {
     return a.licenses.length > 1
   })

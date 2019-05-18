@@ -25,7 +25,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
 
   useEffect(() => {
     let { url } = qs.parse(location.search)
-    console.log(url)
+
     if (url) {
       setLoading(true)
       axios
@@ -73,9 +73,9 @@ const Example = ({ location, data: { markdownRemark } }) => {
               </TabList>
               <TabPanels>
                 <Tree tree={response.tree} />
-                <Table dataRows={response.combined} />
+                <Table dataRows={response.flattened} />
                 <Box>
-                  <AttributionList dependencies={response.combined} />
+                  <AttributionList dependencies={response.flattened} />
                 </Box>
               </TabPanels>
             </Tabs>

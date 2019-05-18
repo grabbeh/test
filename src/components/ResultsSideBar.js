@@ -15,8 +15,8 @@ const ResultsSideBar = props => {
       <Text fontSize={3} fontWeight='bold'>
         Dependencies
       </Text>
-      <Text fontSize={3}>{response.combined.length}</Text>
-      <Summary dependencies={response.combined} />
+      <Text fontSize={3}>{response.flattened.length}</Text>
+      <Summary dependencies={response.flattened} />
     </Box>
   )
 }

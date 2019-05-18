@@ -2,8 +2,6 @@ import axios from 'axios'
 import _ from 'lodash'
 
 const getLicenseText = async (repository, licenseText) => {
-  // TODO: filter down to get license types to fetch each license text just once rather than multiple
-  // fetches
   if (!licenseText) {
     try {
       let { url } = repository
