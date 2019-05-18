@@ -14,7 +14,6 @@ const getLicenseText = async (repository, licenseText) => {
       url = _.replace(url, 'github.com', 'raw.githubusercontent.com')
       // if URL starts with 'git' format into normal URL
       let result = await axios(`${url}/master/LICENSE`)
-
       if (!result.data) {
         result = await axios(`${url}/master/license`)
       }

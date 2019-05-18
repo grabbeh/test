@@ -59,11 +59,19 @@ const process = a => {
   let children = a.map(({ dependencies, parent }) => {
     return dependencies ? process(dependencies) : parent
   })
-  return _.orderBy(
-    _.flattenDeep(_.concat(topLevel, children)),
-    ['name'],
-    ['asc']
+
+  let arr = _.flattenDeep(_.concat(topLevel, children))
+  let lone = _.uniqBy(
+    arr.filter(a => {
+      return a.licenses.length === 1
+    }),
+    'name'
   )
+  let licenses = arr.filter(a => {
+    return a.licenses.length > 1
+  })
+
+  return _.orderBy(_.concat(lone, licenses), ['name'], ['asc'])
 }
 
 const getURLs = dependencies => {
