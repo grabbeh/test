@@ -59,7 +59,11 @@ const process = a => {
   let children = a.map(({ dependencies, parent }) => {
     return dependencies ? process(dependencies) : parent
   })
-  return _.flattenDeep(_.concat(topLevel, children))
+  return _.orderBy(
+    _.flattenDeep(_.concat(topLevel, children)),
+    ['name'],
+    ['asc']
+  )
 }
 
 const getURLs = dependencies => {

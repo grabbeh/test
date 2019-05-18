@@ -30,13 +30,13 @@ const getColor = (license, info) => {
 }
 
 const updateLicenseInfo = async o => {
-  let { license, licenses, licenseText } = o
+  let { license, licenses, licenseText, repository } = o
   // if just one license, things are simple, just return object with license/color
   if (license && typeof license !== 'object') {
     return [
       {
         license: license,
-        licenseText: await getLicenseText(license, licenseText),
+        licenseText: await getLicenseText(repository, licenseText),
         color: getColor(license, revised)
       }
     ]
@@ -46,7 +46,7 @@ const updateLicenseInfo = async o => {
     return [
       {
         license: license.type,
-        licenseText: await getLicenseText(license.type, licenseText),
+        licenseText: await getLicenseText(repository, licenseText),
         color: getColor(license.type, revised)
       }
     ]
@@ -56,7 +56,7 @@ const updateLicenseInfo = async o => {
     return licenses.map(async ({ type }) => {
       return {
         license: type,
-        licenseText: await getLicenseText(type, licenseText),
+        licenseText: await getLicenseText(repository, licenseText),
         color: getColor(type, revised)
       }
     })

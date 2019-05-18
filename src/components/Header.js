@@ -7,9 +7,6 @@ import Logo from './Logo'
 const Header = () => (
   <Box mb={2}>
     <Flex flexWrap='wrap'>
-      <Text.s mt={13} mr={2}>
-        <Logo />
-      </Text.s>
       <Text fontWeight='bold' fontSize={5}>
         License checker
       </Text>

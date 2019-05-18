@@ -18,14 +18,10 @@ const InputSideBar = props => {
         <Tab>
           <Text>Paste</Text>
         </Tab>
-        <Tab>
-          <Text>Upload</Text>
-        </Tab>
       </TabList>
       <TabPanels>
         <UrlForm setLoading={setLoading} setResponse={setResponse} />
         <JSONForm setLoading={setLoading} setResponse={setResponse} />
-        <Text>Coming soon</Text>
       </TabPanels>
     </Tabs>
   )

@@ -46,13 +46,14 @@ const Example = ({ location, data: { markdownRemark } }) => {
         <Box
           p={[2, 3]}
           minHeight={[1, '100vh']}
-          width={[1, 0.3]}
+          width={[1, 1 / 4]}
+          bg='#f9f9f9'
         >
           <Header />
           <InputSideBar setLoading={setLoading} setResponse={setResponse} />
           {response && <ResultsSideBar response={response} />}
         </Box>
-        <Box minHeight='100vh' p={[2, 3]} width={[1, 0.7]}>
+        <Box minHeight='100vh' p={[2, 3]} width={[1, 3 / 4]}>
           {loading && <Loading />}
           {!response && !loading && (
             <Box dangerouslySetInnerHTML={{ __html: html }} />

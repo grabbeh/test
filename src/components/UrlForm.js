@@ -13,7 +13,6 @@ import Spinner from 'react-svg-spinner'
 
 const UrlForm = props => {
   let { setLoading, setResponse } = props
-
   return (
     <Formik
       initialValues={{

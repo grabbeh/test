@@ -12,9 +12,8 @@ const Dependency = ({ parent, dependencies }) => {
   return (
     <Fragment>
       <Box
-        borderRight='1px solid'
+        border='1px solid'
         borderColor='light-gray'
-        borderTop='1px solid'
         bg='white'
         key={name}
         p={2}
@@ -27,25 +26,35 @@ const Dependency = ({ parent, dependencies }) => {
       >
         <Flex flexWrap='wrap' justifyContent='space-between'>
           <Box width={0.7}>
-          <Text fontWeight='bold' fontSize={[2, 3]}>
-            {name}
-          </Text>
+            <Text fontWeight='bold' fontSize={[2, 3]}>
+              {name}
+            </Text>
           </Box>
           <Box width={0.2}>
-          <Flex justifyContent='flex-end'>
-             <BlueOak width={20} height={20} borderRadius={2} rating={licenses[0].color} />
-          </Flex>
+            <Flex justifyContent='flex-end'>
+              <BlueOak
+                width={20}
+                height={20}
+                borderRadius={4}
+                rating={licenses[0].color}
+              />
+            </Flex>
           </Box>
         </Flex>
-        {licenses.length < 2 && <Text fontSize={2}>{licenses[0].license ? licenses[0].license : 'Unknown'}</Text>}
-        {licenses.length > 1 && licenses.map((l, i) => {
-          return (
-            <Text key={i} fontSize={2}>{l.license ? l.license : 'Unknown'}</Text>
-          )
-        })}
-        <Text fontSize={1}>
-          {author ? author.name : 'Unknown'}
-        </Text>
+        {licenses.length < 2 && (
+          <Text fontSize={2}>
+            {licenses[0].license ? licenses[0].license : 'Unknown'}
+          </Text>
+        )}
+        {licenses.length > 1 &&
+          licenses.map((l, i) => {
+            return (
+              <Text key={i} fontSize={2}>
+                {l.license ? l.license : 'Unknown'}
+              </Text>
+            )
+          })}
+        <Text fontSize={1}>{author ? author.name : 'Unknown'}</Text>
         {dependencies && (
           <Text>
             {dependencies && (
