@@ -109,9 +109,11 @@ const getTreeData = async dependencies => {
       data,
       'license',
       'licenses',
+      'licenseText',
       'name',
       'dependencies',
       'version',
+      'repository',
       'author'
     )
     let { dependencies } = data
