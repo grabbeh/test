@@ -29,7 +29,7 @@ const Example = ({ location, data: { markdownRemark } }) => {
     if (url) {
       setLoading(true)
       axios
-        .post('/.netlify/functions/submit-license', { url })
+        .post('/.netlify/functions/process-package-json', { url })
         .then(r => {
           setResponse(r.data)
           setLoading(false)
