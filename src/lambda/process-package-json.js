@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import semver from 'semver'
 import axios from 'axios'
-import convert from './convert'
+import convert from './addAttributes'
 // import test from './test.json'
 
 export async function handler (event, context) {
@@ -105,14 +105,23 @@ const getTreeData = async dependencies => {
   let urls = getURLs(dependencies)
   let promises = urls.map(async url => {
     let { data } = await axios(url)
+    let picked = _.pick(
+      data,
+      'license',
+      'licenses',
+      'name',
+      'dependencies',
+      'version',
+      'author'
+    )
     let { dependencies } = data
     if (dependencies && Object.keys(dependencies).length > 0) {
       return {
-        parent: await convert(data),
+        parent: await convert(picked),
         dependencies: await getTreeData(dependencies)
       }
     } else {
-      return { parent: await convert(data) }
+      return { parent: await convert(picked) }
     }
   })
   // https://stackoverflow.com/questions/30362733/handling-errors-in-promise-all

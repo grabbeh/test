@@ -33,7 +33,7 @@ const UrlForm = props => {
         })
         let { url } = values
         axios
-          .post('/.netlify/functions/submit-license', { url })
+          .post('/.netlify/functions/process-package-json', { url })
           .then(r => {
             setResponse(r.data)
             setSubmitting(false)

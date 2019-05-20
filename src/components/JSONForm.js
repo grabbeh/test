@@ -10,6 +10,7 @@ import Error from './Error'
 import TextArea from './TextArea'
 
 const UrlForm = props => {
+  let { setLoading, setResponse } = props
   return (
     <Formik
       initialValues={{
@@ -32,17 +33,18 @@ const UrlForm = props => {
         })
         let { json } = values
         axios
-          .post('/.netlify/functions/submit-license', { json })
+          .post('/.netlify/functions/process-package-json', { json })
           .then(r => {
             setSubmitting(false)
-            props.setResponse(r.data)
+            setResponse(r.data)
+            setLoading(false)
           })
           .catch(err => {
-            setSubmitting(false)
-            setSubmitting(false)
             setErrors({
               serverError: err.response.data
             })
+            setSubmitting(false)
+            setLoading(false)
           })
       }}
     >
@@ -66,7 +68,9 @@ const UrlForm = props => {
               <Flex justifyContent='flex-end'>
                 <Button disabled={isSubmitting} type='submit' px={3} py={2}>
                   {isSubmitting ? (
-                    <Text fontSize={2}>Loading...</Text>
+                    <Text color='white' ontSize={2}>
+                      Loading...
+                    </Text>
                   ) : (
                     <Text color='white' fontSize={2}>
                       Submit

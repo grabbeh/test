@@ -4,11 +4,11 @@ import Box from './Box'
 import Flex from './Flex'
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi'
 import BlueOak from './BlueOak'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 const Dependency = ({ parent, dependencies }) => {
   let [hidden, setHidden] = useState(true)
-  let { name, author, licenses } = parent
+  let { name, author, licenses, version } = parent
   return (
     <Fragment>
       <Box
@@ -23,11 +23,15 @@ const Dependency = ({ parent, dependencies }) => {
         borderRadius={2}
         boxShadowSize='sm'
         position='relative'
+        height='auto'
       >
         <Flex flexWrap='wrap' justifyContent='space-between'>
           <Box width={0.7}>
             <Text fontWeight='bold' fontSize={[2, 3]}>
               {name}
+            </Text>
+            <Text fontWeight='bold' fontSize={[2]}>
+              {version}
             </Text>
           </Box>
           <Box width={0.2}>
@@ -65,21 +69,19 @@ const Dependency = ({ parent, dependencies }) => {
               >
                 {hidden ? (
                   <Text.s pointer fontWeight='bold' fontSize={4}>
-                    <FiChevronUp />
+                    <FiChevronDown />
                   </Text.s>
                 ) : (
                   <Text pointer fontWeight='bold' fontSize={4}>
-                    <FiChevronDown />
+                    <FiChevronUp />
                   </Text>
                 )}
               </Box>
             )}
             {dependencies.map((d, i) => (
-              <Fragment key={i}>
-                <HideStyled hidden={hidden}>
-                  <Dependency number={i + 1} {...d} />
-                </HideStyled>
-              </Fragment>
+              <HideStyled key={i} hide={hidden}>
+                <Dependency {...d} />
+              </HideStyled>
             ))}
           </Text>
         )}
@@ -89,10 +91,9 @@ const Dependency = ({ parent, dependencies }) => {
 }
 
 const HideStyled = styled.div`
-  ${props =>
-    props.hide &&
-    css`
-      visibility: hidden;
-    `};
+  opacity: ${props => (props.hide ? 0 : 1)};
+  height: ${props => (props.hide ? 0 : '100%')};
+  transition: opacity 300ms, height 300ms ease-in;
 `
+
 export default Dependency

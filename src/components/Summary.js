@@ -5,6 +5,7 @@ import Box from './Box'
 import Text from './Text'
 import BlueOak from './BlueOak'
 import ToolTip from './ToolTip'
+import ReactTooltip from 'react-tooltip'
 
 // filter for uniques, except if more than one license type
 // sort alphabetically
@@ -29,19 +30,20 @@ const Summary = ({ dependencies }) => {
       <Box mt={2}>
         <Flex flexWrap='wrap'>
           {u.map(({ color, name }, i) => (
-            <ToolTip key={i} name={name}>
-              <BlueOak
-                mr={1}
-                mb={1}
-                borderRadius={4}
-                width={20}
-                height={20}
-                rating={color}
-                position='relative'
-              />
-            </ToolTip>
+            <BlueOak
+              key={i}
+              mr={1}
+              mb={1}
+              borderRadius={4}
+              width={20}
+              height={20}
+              rating={color}
+              position='relative'
+              data-tip={name}
+            />
           ))}
         </Flex>
+        <ReactTooltip className='tooltip' effect='solid' />
       </Box>
       <Box my={3}>
         <Flex flexWrap='wrap'>
