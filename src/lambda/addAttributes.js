@@ -31,13 +31,13 @@ const getColor = (license, info) => {
 
 const updateLicenseInfo = async o => {
   let { license, licenses, licenseText, repository } = o
-
   // if multiple licenses, map over each to return type
   if (licenses) {
-    return licenses.map(({ type }) => {
+    return licenses.map(async ({ type }) => {
+      // TODO: When licenseText was same as text, no need for await and hence resolved license name etc
       return {
         license: type,
-        licenseText: getLicenseText(repository, licenseText),
+        text: await getLicenseText(repository, licenseText),
         color: getColor(type, revised)
       }
     })
@@ -48,7 +48,7 @@ const updateLicenseInfo = async o => {
     return [
       {
         license: license,
-        licenseText: await getLicenseText(repository, licenseText),
+        text: await getLicenseText(repository, licenseText),
         color: getColor(license, revised)
       }
     ]
@@ -58,7 +58,7 @@ const updateLicenseInfo = async o => {
     return [
       {
         license: license.type,
-        licenseText: await getLicenseText(repository, licenseText),
+        text: await getLicenseText(repository, licenseText),
         color: getColor(license.type, revised)
       }
     ]

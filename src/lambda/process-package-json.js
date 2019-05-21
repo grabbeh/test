@@ -25,6 +25,7 @@ export async function handler (event, context) {
 
     // TODO: Add license text to combined rather than tree
     let flattened = process(tree)
+
     // let data = { msg: 'Hello World' }
     return {
       statusCode: 200,

@@ -21,6 +21,7 @@ import AttributionList from '../components/AttributionList'
 const Example = ({ location, data: { markdownRemark } }) => {
   let { html } = markdownRemark
   let [response, setResponse] = useState(null)
+  console.log(response)
   let [loading, setLoading] = useState(null)
 
   useEffect(() => {

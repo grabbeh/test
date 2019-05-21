@@ -68,7 +68,7 @@ const UrlForm = props => {
               <Flex justifyContent='flex-end'>
                 <Button disabled={isSubmitting} type='submit' px={3} py={2}>
                   {isSubmitting ? (
-                    <Text color='white' ontSize={2}>
+                    <Text color='white' fontSize={2}>
                       Loading...
                     </Text>
                   ) : (

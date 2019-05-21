@@ -18,7 +18,7 @@ const AttributionList = ({ dependencies }) => {
             </Box>
 
             <Text fontSize={3}>
-              <pre>{l.licenseText}</pre>
+              <pre>{l.text}</pre>
             </Text>
           </Box>
         ))
