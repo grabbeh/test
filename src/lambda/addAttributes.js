@@ -33,7 +33,7 @@ const updateLicenseInfo = async o => {
   let { license, licenses, licenseText, repository } = o
   // if multiple licenses, map over each to return type
   if (licenses) {
-    return licenses.map(async ({ type }) => {
+    return await Promise.all(licenses.map(async ({ type }) => {
       // TODO: When licenseText was same as text, no need for await and hence resolved license name etc
       return {
         license: type,
@@ -41,7 +41,7 @@ const updateLicenseInfo = async o => {
         color: getColor(type, revised)
       }
     })
-  }
+  )}
 
   // if just one license, things are simple, just return object with license/color
   if (license && typeof license !== 'object') {
