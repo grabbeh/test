@@ -23,7 +23,7 @@ const Dependency = ({ parent, dependencies }) => {
         borderRadius={2}
         boxShadowSize='sm'
         position='relative'
-        height='auto'
+  
       >
         <Flex flexWrap='wrap' justifyContent='space-between'>
           <Box width={0.7}>
