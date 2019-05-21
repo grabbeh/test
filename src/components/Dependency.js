@@ -79,7 +79,7 @@ const Dependency = ({ parent, dependencies }) => {
               </Box>
             )}
             {dependencies.map((d, i) => (
-              <HideStyled key={i} hide={hidden}>
+              <HideStyled key={i} hidden={hidden} hide={hidden}>
                 <Dependency {...d} />
               </HideStyled>
             ))}
